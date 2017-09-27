@@ -22,6 +22,19 @@ FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
 
+CREATE TABLE IF NOT EXISTS dev_bd_pilot.OM(
+    op_name STRING,
+    source_type STRING,
+    source_schema_name STRING,
+    source_location STRING,
+    target_type STRING
+)
+COMMENT 'Metadata Details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE;
+
 
 CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_DATA(
     op_id SMALLINT,
