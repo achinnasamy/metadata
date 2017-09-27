@@ -12,7 +12,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='metadata',
 
-    version='1.0',
+    version='3.0',
 
     description='MetrolinuxMetadata',
     long_description=long_description,

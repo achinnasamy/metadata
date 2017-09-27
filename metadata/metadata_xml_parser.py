@@ -4,7 +4,7 @@ import xml.dom.minidom
 import xml.etree.ElementTree as ET
 
 #from metadata.metadata_enum import OPTYPE
-from metadata.metadata_util import MetadataValue
+from metadata.metadata_util import MetadataValue, execute_hdfs
 
 
 class MetadataXMLParser:
@@ -37,8 +37,24 @@ class MetadataXMLParser:
                     #    metadatavalue.target_path = type.childNodes[0].data
 
 
+        file_content_hdfs = execute_hdfs("metrolinux_metadatav2.xml")
 
-        tree = ET.parse('xml/metrolinux_metadatav2.xml')
+
+
+
+
+        #from time import sleep
+        #sleep(15)
+
+
+        file = open("/tmp/testfile.xml", "w")
+        file.write(file_content_hdfs)
+        file.close()
+
+        #tree = ET.parse('xml/metrolinux_metadatav2.xml')
+        tree = ET.parse('/tmp/testfile.xml')
+        #tree = ET.fromstring(file_content_hdfs)
+
         root = tree.getroot()
 
 
@@ -56,6 +72,9 @@ class MetadataXMLParser:
                                     if (each_element.tag == "op_name"):
                                         metadatavalue.op_name = each_element.text
 
+                                    elif (each_element.tag == "job_type"):
+                                        metadatavalue.job_type = each_element.text
+
                                     elif (each_element.tag == "source_type"):
                                         metadatavalue.source_type = each_element.text
 
@@ -65,12 +84,26 @@ class MetadataXMLParser:
                                     elif (each_element.tag == "source_location"):
                                         metadatavalue.source_location = each_element.text
 
+                                    elif (each_element.tag == "source_entity_name"):
+                                        metadatavalue.source_entity_name = each_element.text
+
+                                    elif (each_element.tag == "source_path"):
+                                        metadatavalue.source_path = each_element.text
+
                                     elif (each_element.tag == "target_type"):
                                         metadatavalue.target_type = each_element.text
 
+                                    elif (each_element.tag == "target_schema_name"):
+                                        metadatavalue.target_schema_name = each_element.text
 
+                                    elif (each_element.tag == "target_entity_name"):
+                                        metadatavalue.target_entity_name = each_element.text
 
+                                    elif (each_element.tag == "target_system"):
+                                        metadatavalue.target_system = each_element.text
 
+                                    elif (each_element.tag == "target_path"):
+                                        metadatavalue.target_path = each_element.text
 
 
         return metadatavalue
@@ -79,12 +112,6 @@ class MetadataXMLParser:
 class XMLValidator:
 
     def validateXMLData(self, metadata_value):
-
-
-        print '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
-
-        print metadata_value.source_schema_name
-
 
 
          # if (metadata_value.op_type == OPTYPE.INGESTION.get_value()):

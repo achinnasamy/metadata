@@ -26,7 +26,7 @@
                                     <target_schema_name>dev_bd_pilot</target_schema_name>
                                     <target_entity_name>RAMS_PRESTO_USAGE_TEMP </target_entity_name>
                                     <target_system>Curated</target_system>
-                                    <target_path></target_path>
+                                    <target_path>towards_mars</target_path>
                           </attribute>
                       </op_type>
 
@@ -43,7 +43,7 @@
                                     <target_schema_name>dev_bd_pilot</target_schema_name>
                                     <target_entity_name>bdpilot.Onboard_trans_counts,Bdpilot.Onboard_trans_rev_paper_tix,bdpilot.Onboard_trans_rev_taps,Bdpilot.Onboard_trans_rev_tot,bdpilot.Onboard_trans_rev_count </target_entity_name>
                                     <target_system>Consumption</target_system>
-                                    <target_path></target_path>
+                                    <target_path>towards_sun</target_path>
                           </attribute>
 
                     </op_type>

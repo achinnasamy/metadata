@@ -5,8 +5,11 @@ __main__.py
 setup.cfg
 setup.py
 data/data_file
+data/hive_scripts
 metadata/__init__.py
+metadata/hdfs_manager.py
 metadata/metadata_enum.py
+metadata/metadata_hive.py
 metadata/metadata_ingestor.py
 metadata/metadata_reckoner.py
 metadata/metadata_util.py

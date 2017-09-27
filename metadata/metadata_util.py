@@ -4,6 +4,7 @@
 
 import time
 import datetime
+import subprocess as sp
 
 #
 #  Gets the process id of java
@@ -19,6 +20,18 @@ def get_current_time():
     ts = time.time()
     return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
+def execute_hdfs(filename):
+
+    #result = sp.check_output('hdfs dfs -cat /metrolinux_metadatav2.xml')
+
+    result = sp.Popen(["hdfs", "dfs", "-cat", "/metrolinux_metadatav2.xml"], stdout=sp.PIPE).communicate()[0]
+
+    return result
+
+def execute_query(query):
+
+    sp.Popen(query, shell=False, stdout=sp.PIPE)
+    return
 
 class MetadataValue:
 

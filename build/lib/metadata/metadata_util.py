@@ -20,6 +20,11 @@ def get_current_time():
     return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
 
+def execute_query(query):
+    import subprocess as sp
+    sp.Popen(query, shell=False, stdout=sp.PIPE)
+    return
+
 class MetadataValue:
 
     def __init__(self, **args):

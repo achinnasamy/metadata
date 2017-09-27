@@ -1,9 +1,8 @@
 CREATE DATABASE IF NOT EXISTS dev_bd_pilot;
 
 CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(
-    op_id SMALLINT,
-    opname STRING,
-    op_type STRING,
+    op_name STRING,
+    job_type STRING
     source_entity_name STRING,
     source_type STRING,
     source_location STRING,
@@ -14,20 +13,8 @@ CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(
     target_type STRING,
     target_location STRING,
     target_path STRING,
-    target_schema_name STRING
-)
-COMMENT 'Metadata Details'
-ROW FORMAT DELIMITED
-FIELDS TERMINATED BY '\t'
-LINES TERMINATED BY '\n'
-STORED AS TEXTFILE;
-
-CREATE TABLE IF NOT EXISTS dev_bd_pilot.OM(
-    op_name STRING,
-    source_type STRING,
-    source_schema_name STRING,
-    source_location STRING,
-    target_type STRING
+    target_schema_name STRING,
+    target_system STRING
 )
 COMMENT 'Metadata Details'
 ROW FORMAT DELIMITED
