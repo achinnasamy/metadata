@@ -1,9 +1,12 @@
+import subprocess
+
+from metadata.metadata_hive import MetadataHiveIngestor
 from metadata.metadata_util import get_pid, get_current_time
 from metadata.metadata_validator import MetaDataValidator, MetaDataInputArgumentValidator
 
 import sys,getopt
 
-from metadata.metadata_xml_parser import MetadataXMLParser
+from metadata.metadata_xml_parser import MetadataXMLParser, XMLValidator
 
 
 class MetaDataReckoner:
@@ -56,12 +59,22 @@ def start_main(argv):
     metadataReckoner = MetaDataReckoner()
     metadataReckoner.runMetaDataReckoner()
 
+
+    # Parse the XML and fetch all the data
     metadataParser = MetadataXMLParser()
     metadatavalue = metadataParser.parseXML()
 
-    print (metadatavalue.op_type)
 
-    #print get_current_time()
+    # Validate the contents of XML
+    xml_validator = XMLValidator()
+    xml_validator.validateXMLData(metadatavalue)
+
+
+    # Should the validation return true, then ingest in Hive
+    hiveIngestor = MetadataHiveIngestor()
+    hiveIngestor.ingestMetadata(metadatavalue)
+
+
 
     print "Metadata Reckoner Done."
 

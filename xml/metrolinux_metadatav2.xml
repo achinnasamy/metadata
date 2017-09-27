@@ -1,0 +1,59 @@
+<metadata signal="metrolinx">
+    <title>Data Lake Metadata</title>
+    <last_modified_date>2017</last_modified_date>
+    <created_by>sree</created_by>
+    <comments>great_going_ingestion</comments>
+    <hdfs_path> User/bdpilot/metadata/xml</hdfs_path>
+    <data>
+
+        <metadata_type name="Business">
+
+        </metadata_type>
+
+        <metadata_type name="Operation">
+                <data_steward> </data_steward>
+                <operations>
+                      <op_type name="ingestion">
+                          <attribute>
+                                    <op_name>RAMS_PRESTO_load.sh</op_name>
+                                    <job_type>bashscript</job_type>
+                                    <source_type>RDBMS</source_type>
+                                    <source_schema_name>revenue test</source_schema_name>
+                                    <source_location>Oracle></source_location>
+                                    <source_entity_name>RVN_PROD.RAMS_PRESTO_USAGE_TEMP</source_entity_name>
+                                    <source_path>oracle:thin:@10.100.29.40:1522/revntest</source_path>
+                                    <target_type> Hive_local</target_type>
+                                    <target_schema_name>dev_bd_pilot</target_schema_name>
+                                    <target_entity_name>RAMS_PRESTO_USAGE_TEMP </target_entity_name>
+                                    <target_system>Curated</target_system>
+                                    <target_path></target_path>
+                          </attribute>
+                      </op_type>
+
+                    <op_type name="transformation">
+                          <attribute>
+                                    <op_name>Hive script</op_name>
+                                    <job_type>Analytical.hql</job_type>
+                                    <source_type>Hive_local</source_type>
+                                    <source_schema_name>dev_bd_pilot</source_schema_name>
+                                    <source_location>Curated</source_location>
+                                    <source_entity_name>RAMS_PRESTO_SALESTRAN,RAMS_PRESTO_USAGE</source_entity_name>
+                                    <source_path>nullvalue</source_path>
+                                    <target_type>CSV</target_type>
+                                    <target_schema_name>dev_bd_pilot</target_schema_name>
+                                    <target_entity_name>bdpilot.Onboard_trans_counts,Bdpilot.Onboard_trans_rev_paper_tix,bdpilot.Onboard_trans_rev_taps,Bdpilot.Onboard_trans_rev_tot,bdpilot.Onboard_trans_rev_count </target_entity_name>
+                                    <target_system>Consumption</target_system>
+                                    <target_path></target_path>
+                          </attribute>
+
+                    </op_type>
+
+                </operations>
+        </metadata_type>
+
+        <metadata_type name="Technical">
+
+        </metadata_type>
+
+    </data>
+</metadata>

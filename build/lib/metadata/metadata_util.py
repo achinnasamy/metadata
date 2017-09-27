@@ -1,6 +1,6 @@
 
 
-from subprocess import check_output
+#from subprocess import check_output
 
 import time
 import datetime
@@ -12,7 +12,8 @@ import datetime
 
 #
 def get_pid(name):
-    return check_output(["pidof",name])
+    #return check_output(["pidof",name])
+    return
 
 def get_current_time():
     ts = time.time()

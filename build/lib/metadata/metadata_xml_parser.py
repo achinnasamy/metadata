@@ -2,6 +2,7 @@
 from xml.dom.minidom import parse
 import xml.dom.minidom
 
+#from metadata.metadata_enum import OPTYPE
 from metadata.metadata_util import MetadataValue
 
 
@@ -12,7 +13,7 @@ class MetadataXMLParser:
 
         metadatavalue = MetadataValue()
 
-        DOMTree = xml.dom.minidom.parse("metadata/metrolinux_metadata.xml")
+        DOMTree = xml.dom.minidom.parse("metrolinux_metadata.xml")
         collection = DOMTree.documentElement
 
         if collection.hasAttribute("signal"):
@@ -38,4 +39,16 @@ class MetadataXMLParser:
 
 
         return metadatavalue
+
+
+class XMLValidator:
+
+    def validateXMLData(self, metadata_value):
+
+        # if (metadata_value.op_type == OPTYPE.INGESTION.get_value()):
+        #     print "ha ha"
+        # else:
+        #     print "Aiyo"
+
+        return
 

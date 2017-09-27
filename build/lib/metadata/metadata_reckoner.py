@@ -3,7 +3,7 @@ from metadata.metadata_validator import MetaDataValidator, MetaDataInputArgument
 
 import sys,getopt
 
-from metadata.metadata_xml_parser import MetadataXMLParser
+from metadata.metadata_xml_parser import MetadataXMLParser, XMLValidator
 
 
 class MetaDataReckoner:
@@ -59,7 +59,10 @@ def start_main(argv):
     metadataParser = MetadataXMLParser()
     metadatavalue = metadataParser.parseXML()
 
-    print (metadatavalue.op_type)
+
+    xml_validator = XMLValidator()
+    xml_validator.validateXMLData(metadatavalue)
+
 
     #print get_current_time()
 
