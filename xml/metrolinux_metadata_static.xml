@@ -1,0 +1,55 @@
+<metadata name="metrolinx">
+      <metadata_type>Operational</metadata_type>
+      <op_type>permited Values </op_type> <!--Ingestion,Curation,Transformation,Consumption>
+      <op_name>permited Values </op_name> <!Bash script, Hive script>
+      <job_name>permited value </job_name> <!Rams,workflow, Load.sh, Hive.hql>
+	  <source_type>Permited values</source_type>> <!CSV,NFS,HIVE_EXT,Hive_local,MYSQL,ORACLE,SQL Server,DB2,Mainframes,HBase>
+	  <source_schema_name>Value</source_schema_name><!revntest>
+	  <source_location>Permited values</source_location> <!ORACLE,CSV,landing zone,enterprize>
+	  <Source_entity_name>Permited values<Source_entity_name><!Source Table name,Source Files>
+      <source_path>Permited value</source_path> <!jdbc:oracle:thin:@10.100.29.40:1522/revntest --username ro_rams4bigdata --password-file $pw_file_path/ora_pwd >
+	  <origin_system>Permited Value</origin_system> <!RAMS,CAD>
+	  <target_type>Permited Value</target_type> <!HIVE_EXT,Hive_local,CSV,DW or Visualization or Reporting tool>
+	  <target_schema_name>Permited Value</target_schema_name> <!dev_bd_pilot>
+	  <target_entity_name>Permited Value</target_entity_name> <!Target Table name,File>
+      <target_system>Permited value</target_system> <! Raw, Curated, Integration, Consumption>
+      <target_path>Permited value</target_path><!home/bdpilot/Rams>
+
+</metadata>
+
+<metadata>
+
+ <metadata Name> Operation </metadata name >
+        <origin_system>Rams</origin_system>
+		<op type> ingestion </op_type>
+		    <Attributes>
+                    <Op_name>load.sh</op_name>
+					<job_type>bashscript</job_name>
+					<source_type>RDBMS</source_type>
+					<source_schema_name>revenue test</source_schema_name>
+					<source_location>Oracle></source_location>
+					<Source_entity_name> Ram table name</Source_entity_name>
+                    <Source_path>oracle:thin:@10.100.29.40:1522/revntest</Source_path>
+                    <target_type> Hive_local</target_type>
+					<target_schema_name>dev_bd_pilot</target_schema_name>
+					<target_entity_name> Ram table name</target_entity_name>
+					<target_system>Curated</target_system>
+					<target_path></target_path>
+		       <Attributes>
+
+        <op type> Transformation </op_type>
+
+		   <Attribute>
+                    <Op_name>Hive script</op_name>
+					<job_type>Analytical.hql</job_type>
+					<source_type>Hive_local</source_type>
+					<source_schema_name>dev_bd_pilot</source_schema_name>
+					<source_location>Landing Zone</source_location>
+					<Source_entity_name> Ram table name</Source_entity_name>
+                    <Source_path> nullvalue </Source_path>
+                    <target_type> CSV </target_type>
+					<target_schema_name>dev_bd_pilot</target_schema_name>
+					<target_entity_name> transformation table name</target_entity_name>
+					<target_system>Consumption</target_system>
+					<target_path>home/bdpilot/</target_path>
+		    <Attribute>
