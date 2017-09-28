@@ -1,5 +1,6 @@
 import subprocess
 
+from metadata.metadata_util import MetadataValue
 from metadata.metadata_hive import MetadataHiveIngestor
 from metadata.metadata_util import get_pid, get_current_time
 from metadata.metadata_validator import MetaDataValidator, MetaDataInputArgumentValidator
@@ -31,7 +32,7 @@ def start_main(argv):
     inputfile       =   ''
     op_id           =   0
 
-    print "Metadata Reckoner Started."
+    print "Metadata Reckoning started..."
 
     opts, args = getopt.getopt(argv, "hi:s:", ["ifile=", "ssystem="])
 
@@ -43,10 +44,6 @@ def start_main(argv):
             inputfile = arg
         elif opt in ("-s", "--ssystem"):
             sourcesystem = arg
-
-
-    print 'Input file is "', inputfile
-    print 'Source System file is "', sourcesystem
 
 
     if sourcesystem == 'RAMS':
@@ -74,7 +71,9 @@ def start_main(argv):
     hiveIngestor = MetadataHiveIngestor()
     hiveIngestor.ingestMetadata(metadatavalue)
 
+    computing_manager = MetadataJobDetailComputingManager()
+    #computing_manager.
 
 
-    print "Metadata Reckoner Done."
+    print "Metadata Reckoner Finished."
 
