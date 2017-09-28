@@ -30,7 +30,8 @@ def execute_hdfs(filename):
 
 def execute_query(query):
 
-    sp.Popen(query, shell=True, stdout=sp.PIPE)
+    #sp.Popen(query, shell=True, stdout=sp.PIPE)
+    sp.call(query, shell=True)
     return
 
 class MetadataValue:
