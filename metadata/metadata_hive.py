@@ -53,3 +53,5 @@ class MetadataHiveIngestor:
                             data.op_parent_process_name)
 
         print complete_query
+
+        execute_query(complete_query)

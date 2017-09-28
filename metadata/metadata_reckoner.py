@@ -1,7 +1,7 @@
 import subprocess
 
 from metadata.metadata_hive import MetadataHiveIngestor
-from metadata.metadata_util import get_pid, get_current_time
+from metadata.metadata_util import get_pid, get_current_time, MetadataJobDetailComputingManager
 from metadata.metadata_validator import MetaDataValidator, MetaDataInputArgumentValidator
 
 import sys,getopt
@@ -70,11 +70,14 @@ def start_main(argv):
     xml_validator.validateXMLData(metadatavalue)
 
 
+    computing_manager = MetadataJobDetailComputingManager()
+    data = computing_manager.fetchJOBDetail()
+
+
     # Should the validation return true, then ingest in Hive
     hiveIngestor = MetadataHiveIngestor()
-    hiveIngestor.ingestMetadata(metadatavalue)
-
-
+    #hiveIngestor.ingestMetadata(metadatavalue)
+    hiveIngestor.ingestOperationalData(data)
 
     print "Metadata Reckoner Done."
 

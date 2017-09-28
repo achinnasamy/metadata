@@ -24,7 +24,7 @@ def execute_hdfs(filename):
 
     #result = sp.check_output('hdfs dfs -cat /metrolinux_metadatav2.xml')
 
-    result = sp.Popen(["hdfs", "dfs", "-cat", "/metrolinx_metadata.xml"], stdout=sp.PIPE).communicate()[0]
+    result = sp.Popen(["hdfs", "dfs", "-cat", "/metrolinx.xml"], stdout=sp.PIPE).communicate()[0]
 
     return result
 
@@ -41,3 +41,21 @@ class MetadataValue:
 
 
 
+class MetadataJobDetailComputingManager:
+
+    def fetchJOBDetail(self):
+        metadatavalue = MetadataValue()
+
+        metadatavalue.op_name = "OPNAME"
+        metadatavalue.process_id= "1000"
+        metadatavalue.op_start_time_stamp = get_current_time()
+        metadatavalue.op_end_time_stamp = ""
+        metadatavalue.op_eta = "10"
+        metadatavalue.op_status = "RUNNING"
+        metadatavalue.op_owner = "HADOOP"
+        metadatavalue.record_count = 100
+        metadatavalue.op_parent_process_name = "PARENT"
+
+
+
+        return metadatavalue
