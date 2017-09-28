@@ -40,7 +40,16 @@ class MetadataHiveIngestor:
         execute_query(complete_query)
 
 
-    def ingestData(self, ):
+    def ingestOperationalData(self, data):
+        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_DATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+                         % (data.op_name,
+                            data.process_id,
+                            data.op_start_time_stamp,
+                            data.op_end_time_stamp,
+                            data.op_eta,
+                            data.op_status,
+                            data.op_owner,
+                            data.record_count,
+                            data.op_parent_process_name)
 
-
-        return True
+        print complete_query

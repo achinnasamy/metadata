@@ -37,7 +37,7 @@ class MetadataXMLParser:
                     #    metadatavalue.target_path = type.childNodes[0].data
 
 
-        file_content_hdfs = execute_hdfs("metrolinux_metadatav2.xml")
+        file_content_hdfs = execute_hdfs("metrolinx_metadata.xml")
 
 
 
