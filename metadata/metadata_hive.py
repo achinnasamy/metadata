@@ -40,7 +40,7 @@ class MetadataHiveIngestor:
         execute_query(complete_query)
 
 
-
+    def ingestData(self, ):
 
 
         return True

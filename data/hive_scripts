@@ -24,15 +24,14 @@ STORED AS TEXTFILE;
 
 
 CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_DATA(
-    op_id SMALLINT,
     op_name STRING,
     process_id STRING,
-    op_start_time_stamp TIMESTAMP,
-    op_end_time_stamp TIMESTAMP,
-    op_eta TIMESTAMP,
+    op_start_time_stamp STRING,
+    op_end_time_stamp STRING,
+    op_eta STRING,
     op_status STRING,
     op_owner STRING,
-    record_count SMALLINT,
+    record_count STRING,
     op_parent_process_name STRING
 )
 COMMENT 'Metadata Data'

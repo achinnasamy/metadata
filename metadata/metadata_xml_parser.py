@@ -43,8 +43,8 @@ class MetadataXMLParser:
 
 
 
-        #from time import sleep
-        #sleep(15)
+        # from time import sleep
+        # sleep(15)
 
 
         file = open("/tmp/testfile.xml", "w")
