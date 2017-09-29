@@ -6,12 +6,11 @@ import time
 import datetime
 import subprocess as sp
 
+
 #
 #  Gets the process id of java
 #
 # print get_pid('java')
-
-#
 def get_pid(name):
     #return check_output(["pidof",name])
     return
@@ -19,6 +18,16 @@ def get_pid(name):
 def get_current_time():
     ts = time.time()
     return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H:%M:%S')
+
+
+#
+# Find all xml files and put it in a list and send it back
+#
+def find_all_xml_files_in_hdfs():
+    list_of_xml_files = []
+    result = sp.Popen(["hdfs", "dfs", "-ls", "-C", "/*.xml"], stdout=sp.PIPE).communicate()[0]
+    return
+
 
 def execute_hdfs(filename):
 
@@ -33,6 +42,20 @@ def execute_query(query):
     sp.Popen(query, shell=True, stdout=sp.PIPE)
     #sp.call(query, shell=True)
     return
+
+#
+# Returns the current user name
+#
+def get_current_linux_user_name():
+    import getpass
+    return getpass.getuser()
+
+#
+# Returns the parent process name
+#
+def get_parent_process_id():
+    import os
+    return os.getppid()
 
 class MetadataValue:
 
@@ -57,13 +80,11 @@ class MetadataJobDetailComputingManager:
         metadatavalue.op_name = "OPNAME"
         metadatavalue.process_id= "1000"
         metadatavalue.op_start_time_stamp = get_current_time()
-        metadatavalue.op_end_time_stamp = ""
+        metadatavalue.op_end_time_stamp = get_current_time()
         metadatavalue.op_eta = "10"
         metadatavalue.op_status = "RUNNING"
-        metadatavalue.op_owner = "HADOOP"
+        metadatavalue.op_owner = get_current_linux_user_name()
         metadatavalue.record_count = 100
         metadatavalue.op_parent_process_name = "PARENT"
-
-
 
         return metadatavalue

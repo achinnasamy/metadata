@@ -1,0 +1,59 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="metadata">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="title"/>
+        <xs:element type="xs:short" name="last_modified_date"/>
+        <xs:element type="xs:string" name="created_by"/>
+        <xs:element type="xs:string" name="comments"/>
+        <xs:element type="xs:string" name="hdfs_path"/>
+        <xs:element name="data">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="metadata_type" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="data_steward" minOccurs="0"/>
+                    <xs:element name="operations" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="op_type" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="attribute">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="op_name"/>
+                                      <xs:element type="xs:string" name="job_type"/>
+                                      <xs:element type="xs:string" name="source_type"/>
+                                      <xs:element type="xs:string" name="source_schema_name"/>
+                                      <xs:element type="xs:string" name="source_location"/>
+                                      <xs:element type="xs:string" name="source_entity_name"/>
+                                      <xs:element type="xs:string" name="source_path"/>
+                                      <xs:element type="xs:string" name="target_type"/>
+                                      <xs:element type="xs:string" name="target_schema_name"/>
+                                      <xs:element type="xs:string" name="target_entity_name"/>
+                                      <xs:element type="xs:string" name="target_system"/>
+                                      <xs:element type="xs:string" name="target_path"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute type="xs:string" name="name" use="optional"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="signal"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

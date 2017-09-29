@@ -37,19 +37,15 @@ class MetadataXMLParser:
                     #    metadatavalue.target_path = type.childNodes[0].data
 
 
-        file_content_hdfs = execute_hdfs("metrolinx.xml")
-
-
-
-
+        # file_content_hdfs = execute_hdfs("metrolinx.xml")
 
         # from time import sleep
         # sleep(15)
 
 
-        file = open("/tmp/metadata.xml", "w")
-        file.write(file_content_hdfs)
-        file.close()
+        # file = open("/tmp/metadata.xml", "w")
+        # file.write(file_content_hdfs)
+        # file.close()
 
         #tree = ET.parse('xml/metrolinux_metadatav2.xml')
         tree = ET.parse('/tmp/metadata.xml')

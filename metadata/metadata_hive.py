@@ -10,15 +10,12 @@ class MetadataHiveIngestor:
 
     def ingestMetadata(self, metadata):
 
-
-        # Executing hive through pyhive
+        #### Executing hive through pyhive ####
         # cursor = hive.connect('localhost').cursor()
         # complete_query = "hive -e 'CREATE TABLE ARA(i STRING)'"
         # cursor.execute(complete_query, async=True)
 
-
-
-        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OM values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_METADATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
                                                                                                 % (metadata.op_name,
                                                                                                    metadata.job_type,
                                                                                                    metadata.source_entity_name,
