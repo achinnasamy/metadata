@@ -2,14 +2,10 @@ class MetaDataValidator:
 
     def validateInput(self):
 
-        return
+        return True
 
 
 
 
 
-class MetaDataInputArgumentValidator:
 
-    def validateCommandLineArguments(self):
-
-        return False

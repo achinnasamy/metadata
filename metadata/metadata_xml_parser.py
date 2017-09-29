@@ -113,11 +113,5 @@ class XMLValidator:
 
     def validateXMLData(self, metadata_value):
 
-
-         # if (metadata_value.op_type == OPTYPE.INGESTION.get_value()):
-         #    print "ha ha"
-        # else:
-        #     print "sorry"
-
-        return
+        return True
 
