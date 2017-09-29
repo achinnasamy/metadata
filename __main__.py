@@ -5,8 +5,8 @@ import sys,getopt
 
 def help():
     help_statement = "The METADATA job has to be started using the following protocols: \n\n\n" \
-                     "  python metadata-3.0-py2.7.egg --job=M \n \n     python metadata-3.0-py2.7.egg --job=O \n\n\n" \
-                     "  python metadata-3.0-py2.7.egg --help"
+                     "  python metadata-XXX.egg --job=M \n \n     python metadata-XXX.egg --job=O \n\n\n" \
+                     "  python metadata-XXX.egg --help"
     return help_statement
 
 
