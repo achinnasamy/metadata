@@ -27,30 +27,6 @@ class MetaDataReckoner:
 
 def start_main(argv):
 
-    sourcesystem    =   ''
-    inputfile       =   ''
-    op_id           =   0
-
-    print "Metadata Reckoner started..."
-
-    opts, args = getopt.getopt(argv, "hi:s:", ["ifile=", "ssystem="])
-
-    for opt, arg in opts:
-        if opt == '-h':
-            print 'test.py -i <inputfile> -s <source_system>'
-            sys.exit()
-        elif opt in ("-i", "--ifile"):
-            inputfile = arg
-        elif opt in ("-s", "--ssystem"):
-            sourcesystem = arg
-
-    if sourcesystem == 'RAMS':
-        op_id = 1
-    elif sourcesystem == 'CSV':
-        op_id = 2
-    else:
-        op_id = 3
-
     metadataReckoner = MetaDataReckoner()
     metadataReckoner.runMetaDataReckoner()
 
