@@ -40,6 +40,14 @@ class MetadataValue:
         self.__dict__= args
 
 
+class MetadataCleanerService:
+
+    def cleanFiles(self):
+
+        import os
+        os.remove("/tmp/metadata.xml")
+        return
+
 
 class MetadataJobDetailComputingManager:
 

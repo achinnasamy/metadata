@@ -15,6 +15,7 @@ metadata/metadata_reckoner.py
 metadata/metadata_util.py
 metadata/metadata_validator.py
 metadata/metadata_xml_parser.py
+metadata/operationaldata_reckoner.py
 metadata.egg-info/PKG-INFO
 metadata.egg-info/SOURCES.txt
 metadata.egg-info/dependency_links.txt

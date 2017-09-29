@@ -47,12 +47,12 @@ class MetadataXMLParser:
         # sleep(15)
 
 
-        file = open("/tmp/testfile.xml", "w")
+        file = open("/tmp/metadata.xml", "w")
         file.write(file_content_hdfs)
         file.close()
 
         #tree = ET.parse('xml/metrolinux_metadatav2.xml')
-        tree = ET.parse('/tmp/testfile.xml')
+        tree = ET.parse('/tmp/metadata.xml')
         #tree = ET.fromstring(file_content_hdfs)
 
         root = tree.getroot()

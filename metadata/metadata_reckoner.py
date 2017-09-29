@@ -1,7 +1,7 @@
 import subprocess
 
 from metadata.metadata_hive import MetadataHiveIngestor
-from metadata.metadata_util import get_pid, get_current_time, MetadataJobDetailComputingManager
+from metadata.metadata_util import get_pid, get_current_time, MetadataJobDetailComputingManager, MetadataCleanerService
 from metadata.metadata_validator import MetaDataValidator, MetaDataInputArgumentValidator
 
 import sys,getopt
@@ -31,7 +31,7 @@ def start_main(argv):
     inputfile       =   ''
     op_id           =   0
 
-    print "Metadata Reckoner Started."
+    print "Metadata Reckoner started..."
 
     opts, args = getopt.getopt(argv, "hi:s:", ["ifile=", "ssystem="])
 
@@ -43,11 +43,6 @@ def start_main(argv):
             inputfile = arg
         elif opt in ("-s", "--ssystem"):
             sourcesystem = arg
-
-
-    print 'Input file is "', inputfile
-    print 'Source System file is "', sourcesystem
-
 
     if sourcesystem == 'RAMS':
         op_id = 1
@@ -70,14 +65,15 @@ def start_main(argv):
     xml_validator.validateXMLData(metadatavalue)
 
 
-    computing_manager = MetadataJobDetailComputingManager()
-    data = computing_manager.fetchJOBDetail()
 
 
     # Should the validation return true, then ingest in Hive
     hiveIngestor = MetadataHiveIngestor()
     #hiveIngestor.ingestMetadata(metadatavalue)
-    hiveIngestor.ingestOperationalData(data)
+
+
+    cleanup_service = MetadataCleanerService()
+    cleanup_service.cleanFiles()
 
     print "Metadata Reckoner Done."
 
