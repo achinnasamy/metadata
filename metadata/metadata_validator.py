@@ -9,6 +9,7 @@ class MetaDataValidator:
 
 
 
+    # Validate XML using XSD
     def validateXMLUsingXSD(self, xsd_file, xml_file):
 
         xmlschema_doc = etree.parse(xsd_file)
