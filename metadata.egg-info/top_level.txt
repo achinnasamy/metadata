@@ -1,3 +1,2 @@
 __main__
 metadata
-sample

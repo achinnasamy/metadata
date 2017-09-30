@@ -1,3 +1,4 @@
+from metadata.hdfs_manager import HDFSManager
 from metadata.metadata_hive import MetadataHiveIngestor
 from metadata.metadata_util import MetadataCleanerService, execute_hdfs
 from metadata.metadata_validator import MetaDataValidator
@@ -29,11 +30,20 @@ class MetaDataReckoner:
         return meta_data_validator.validateInput()
 
 
+    def fetchXMLFromHDFS(self):
+
+        hdfs_manager = HDFSManager()
+        #hdfs_manager.fetch_the_recent_xml_file_from_hdfs()
+        return hdfs_manager.fetch_all_xml_files_from_hdfs("")
+
+
 
 def start_main(argv):
 
     # Retrieve the XML file from HDFS
     metadataReckoner = MetaDataReckoner()
+    metadataReckoner.fetchXMLFromHDFS()
+
     metadataReckoner.fetchMetaDataFromHDFS()
 
     # If the metadata XSD validation passes, then proceed further
@@ -54,7 +64,7 @@ def start_main(argv):
 
             # Should the validation return true, then ingest in Hive
             hiveIngestor = MetadataHiveIngestor()
-            #hiveIngestor.ingestMetadata(metadatavalue)
+            hiveIngestor.ingestMetadata(metadatavalue)
 
             cleanup_service = MetadataCleanerService()
             cleanup_service.cleanFiles()

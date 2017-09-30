@@ -13,23 +13,6 @@
         <metadata_type name="Operation">
                 <data_steward> </data_steward>
                 <operations>
-                      <op_type name="ingestion">
-                          <attribute>
-                                    <op_name>RAMS_PRESTO_load.sh</op_name>
-                                    <job_type>bashscript</job_type>
-                                    <source_type>RDBMS</source_type>
-                                    <source_schema_name>revenue test</source_schema_name>
-                                    <source_location>Oracle></source_location>
-                                    <source_entity_name>RVN_PROD.RAMS_PRESTO_USAGE_TEMP</source_entity_name>
-                                    <source_path>oracle:thin:@10.100.29.40:1522/revntest</source_path>
-                                    <target_type> Hive_local</target_type>
-                                    <target_schema_name>dev_bd_pilot</target_schema_name>
-                                    <target_entity_name>RAMS_PRESTO_USAGE_TEMP </target_entity_name>
-                                    <target_system>Curated</target_system>
-                                    <target_path>towards_mars</target_path>
-                          </attribute>
-                      </op_type>
-
                     <op_type name="transformation">
                           <attribute>
                                     <op_name>Hive script</op_name>
@@ -45,9 +28,23 @@
                                     <target_system>Consumption</target_system>
                                     <target_path>towards_sun</target_path>
                           </attribute>
-
                     </op_type>
-
+                    <op_type name="ingestion">
+                          <attribute>
+                                    <op_name>RAMS_PRESTO_load.sh</op_name>
+                                    <job_type>bashscript</job_type>
+                                    <source_type>RDBMS</source_type>
+                                    <source_schema_name>revenue test</source_schema_name>
+                                    <source_location>Oracle></source_location>
+                                    <source_entity_name>RVN_PROD.RAMS_PRESTO_USAGE_TEMP</source_entity_name>
+                                    <source_path>oracle:thin:@10.100.29.40:1522/revntest</source_path>
+                                    <target_type> Hive_local</target_type>
+                                    <target_schema_name>dev_bd_pilot</target_schema_name>
+                                    <target_entity_name>RAMS_PRESTO_USAGE_TEMP </target_entity_name>
+                                    <target_system>Curated</target_system>
+                                    <target_path>towards_mars</target_path>
+                          </attribute>
+                    </op_type>
                 </operations>
         </metadata_type>
 

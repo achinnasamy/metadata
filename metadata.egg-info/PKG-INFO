@@ -4,9 +4,9 @@ Version: 3.0
 Summary: MetrolinuxMetadata
 Home-page: http://metrolinux.com
 Author: sreeram
-Author-email: sreeram@metrolinux.com
+Author-email: sri@metrolinx.com
 License: Copyright
-Description: Metrolinux Metadata
+Description: Metrolinx Project
 Platform: UNKNOWN
 Classifier: Development Status :: 1 - Alpha
 Classifier: Intended Audience :: Developers

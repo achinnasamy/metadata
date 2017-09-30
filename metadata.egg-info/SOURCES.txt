@@ -1,6 +1,4 @@
-LICENSE.txt
 MANIFEST.in
-README.rst
 __main__.py
 setup.cfg
 setup.py
@@ -22,5 +20,3 @@ metadata.egg-info/dependency_links.txt
 metadata.egg-info/entry_points.txt
 metadata.egg-info/requires.txt
 metadata.egg-info/top_level.txt
-sample/__init__.py
-sample/package_data.dat

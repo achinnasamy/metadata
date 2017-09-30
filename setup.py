@@ -6,23 +6,20 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 
 
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
-
 setup(
     name='metadata',
 
     version='3.0',
 
-    description='MetrolinuxMetadata',
-    long_description=long_description,
+    description='Metrolinux Metadata',
+    long_description="Metrolinx Project",
 
 
-    url='http://metrolinux.com',
+    url='http://metrolinx.com',
 
 
     author='sreeram',
-    author_email='sreeram@metrolinux.com',
+    author_email='sri@metrolinx.com',
 
 
     license='Copyright',
