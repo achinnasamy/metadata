@@ -18,7 +18,7 @@ setup(
     url='http://metrolinx.com',
 
 
-    author='sreeram',
+    author='Sri',
     author_email='sri@metrolinx.com',
 
 

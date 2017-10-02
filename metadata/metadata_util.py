@@ -67,11 +67,14 @@ def get_current_linux_user_name():
     import getpass
     return getpass.getuser()
 
+
+
+def get_current_process_id():
+    return os.getpid()
 #
 # Returns the parent process name
 #
 def get_parent_process_id():
-    import os
     return os.getppid()
 
 class MetadataValue:
@@ -98,7 +101,7 @@ class MetadataJobDetailComputingManager:
 
         metadatavalue.op_id = "OP_ID"
         metadatavalue.op_name = "OPNAME"
-        metadatavalue.process_id= "1000"
+        metadatavalue.process_id= get_current_process_id()
         metadatavalue.op_start_time_stamp = get_current_time()
         metadatavalue.op_end_time_stamp = get_current_time()
         metadatavalue.op_status = "RUNNING"

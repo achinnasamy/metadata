@@ -2,7 +2,6 @@ from metadata.hdfs_manager import HDFSManager
 from metadata.metadata_hive import MetadataHiveIngestor
 from metadata.metadata_util import MetadataCleanerService, execute_hdfs
 from metadata.metadata_validator import MetaDataValidator
-
 from metadata.metadata_xml_parser import MetadataXMLParser, XMLValidator
 
 
@@ -73,7 +72,7 @@ def start_main(argv):
             print "Metadata Reckoner Done."
 
         else:
-            print "\n\n\n So Sorry !!!! XML Validation validation failed."
+            print "\n\n\n So Sorry !!!! XML validation failed."
 
     else:
         print "\n Something miserable happened !!!! Metadata XSD validation failed."
