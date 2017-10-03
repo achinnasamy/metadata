@@ -22,7 +22,23 @@ class MetadataXMLParser:
 
         for data in root.findall('data'):
             for mt in data.findall('metadata_type'):
-                    #print mt.attrib
+
+                # Parsing of Business metadata type
+                if (mt.get('name') == "business"):
+                    print mt.get('name')
+
+                # Parsing of Technical metadata type
+                if (mt.get('name') == "technical"):
+                    for entity in mt.findall('entity'):
+
+                        technical_data_map = {}
+                        technical_data_map["table_name"] = entity.get('name')
+                        for column in entity.findall('column'):
+                            technical_data_map[column.get("name")] = entity.get('data_type')
+
+
+
+                # Parsing of Operation metadata type
                 for operations in mt.findall('operations'):
 
                     for optype in operations.findall('op_type'):

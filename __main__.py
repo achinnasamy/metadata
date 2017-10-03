@@ -49,3 +49,12 @@ if __name__ == "__main__":
         sys.exit()
 
 
+
+# if __name__ == "__main__":
+#
+#     status = "0"
+#     ingestion_param = ['ingestion']
+#     operationaldata_reckoner.start_main(status, ingestion_param)
+
+
+

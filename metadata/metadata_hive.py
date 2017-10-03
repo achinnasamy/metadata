@@ -15,9 +15,6 @@ class MetadataHiveIngestor:
         # complete_query = "hive -e 'CREATE TABLE ARA(i STRING)'"
         # cursor.execute(complete_query, async=True)
 
-        print "Ingestion params are: "
-        print ingestion_param
-
         for each in optype_map:
 
             if each in ingestion_param:

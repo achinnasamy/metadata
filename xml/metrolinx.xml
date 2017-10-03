@@ -6,11 +6,15 @@
     <hdfs_path> User/bdpilot/metadata/xml</hdfs_path>
     <data>
 
-        <metadata_type name="Business">
-
+        <metadata_type name="business">
+            <data unit="Information technology"
+                          tag="Revenue data"
+                          owner="Terry "
+                          data_source="RAMS"
+                          data_sensitivity="confidential"/>
         </metadata_type>
 
-        <metadata_type name="Operation">
+        <metadata_type name="operation">
                 <data_steward> </data_steward>
                 <operations>
                     <op_type name="transformation">
@@ -32,7 +36,14 @@
                 </operations>
         </metadata_type>
 
-        <metadata_type name="Technical">
+        <metadata_type name="technical">
+
+            <entity name="presto_stop_id_ref" comment="testtable">
+                <column name="prestostopid" data_type="int"    length="" comment="test"/>
+                <column name="longname"     data_type="string" length="" comment="test" />
+                <column name="shortname"    data_type="string" length="" comment="" />
+                <column name="hustusstopid" data_type="int"    length="" comment="test" />
+            </entity>
 
         </metadata_type>
 

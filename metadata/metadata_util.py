@@ -87,6 +87,18 @@ class MetadataValue:
         self.__dict__= args
 
 
+class TechnicalData:
+
+    def __init__(self, _table_name, _column_name_0, _column_name_1, _column_name_2, _column_name_3 ):
+        self.table_name = _table_name
+        self.column_name_0 = _column_name_0
+        self.column_name_1 = _column_name_1
+        self.column_name_2 = _column_name_2
+        self.column_name_3 = _column_name_3
+
+
+
+
 class MetadataCleanerService:
 
     def cleanFiles(self):
@@ -109,6 +121,7 @@ class MetadataJobDetailComputingManager:
         metadatavalue.process_id= get_current_process_id()
         metadatavalue.op_start_time_stamp = get_current_time()
         metadatavalue.op_end_time_stamp = get_current_time()
+
 
         if (status == "0"):
             metadatavalue.op_status = "STARTED"
