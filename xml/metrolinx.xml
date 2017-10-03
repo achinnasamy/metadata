@@ -17,11 +17,6 @@
         <metadata_type name="operation">
                 <data_steward> </data_steward>
                 <operations>
-                    <op_type name="transformation">
-                        <job op_name="Hive script" job_type="Analytical.hql" source_type="Hive_local" source_schema_name="dev_bd_pilot" source_entity_name="RAMS_PRESTO_SALESTRAN,RAMS_PRESTO_USAGE" source_system="Curated" source_path="nullvalue"
-                             target_type="CSV" target_schema_name="dev_bd_pilot" target_entity_name="bdpilot.Onboard_trans_counts,Bdpilot.Onboard_trans_rev_paper_tix,bdpilot.Onboard_trans_rev_taps,Bdpilot.Onboard_trans_rev_tot,bdpilot.Onboard_trans_rev_count"
-                             target_system="Consumption" target_path="towards_sun"/>
-                    </op_type>
                     <op_type name="ingestion">
                           <job op_name="RAMS_PRESTO_load.sh" job_type="bashscript" source_type="RDBMS" source_schema_name="revenue test" source_entity_name="RVN_PROD.RAMS_PRESTO_USAGE_TEMP" source_system="Oracle" source_path="oracle:thin:@10.100.29.40:1522/revntest"
                              target_type="Hive_local" target_schema_name="dev_bd_pilot" target_entity_name="RAMS_PRESTO_USAGE_TEMP"
@@ -29,6 +24,16 @@
 
                     </op_type>
                     <op_type name="curation">
+                          <job op_name="RAMS_PRESTO_load.sh" job_type="bash script" source_type="HIVE_LOCAL" source_schema_name="DEV_BD_PILOT" source_entity_name="RAMS_PRESTO_USAGE_TEMP" source_system="" source_path="oracle:thin:@10.100.29.40:1522/revntest"
+                             target_type="HIVE_LOCAL" target_schema_name="DEV_BD_PILOT" target_entity_name="Onboard_trans_counts,Onboard_trans_rev_paper_tix,Onboard_trans_rev_taps,Onboard_trans_rev_tot,Onboard_trans_rev_count"
+                             target_system="Derived zone" target_path="towards_gravitational_waves"/>
+                    </op_type>
+                    <op_type name="integration">
+                        <job op_name="Hive script" job_type="Analytical.hql" source_type="Hive_local" source_schema_name="dev_bd_pilot" source_entity_name="RAMS_PRESTO_SALESTRAN,RAMS_PRESTO_USAGE" source_system="Curated" source_path="nullvalue"
+                             target_type="CSV" target_schema_name="dev_bd_pilot" target_entity_name="bdpilot.Onboard_trans_counts,Bdpilot.Onboard_trans_rev_paper_tix,bdpilot.Onboard_trans_rev_taps,Bdpilot.Onboard_trans_rev_tot,bdpilot.Onboard_trans_rev_count"
+                             target_system="Consumption" target_path="towards_sun"/>
+                    </op_type>
+                    <op_type name="consumption">
                           <job op_name="RAMS_PRESTO_load.sh" job_type="bash script" source_type="HIVE_LOCAL" source_schema_name="DEV_BD_PILOT" source_entity_name="RAMS_PRESTO_USAGE_TEMP" source_system="" source_path="oracle:thin:@10.100.29.40:1522/revntest"
                              target_type="HIVE_LOCAL" target_schema_name="DEV_BD_PILOT" target_entity_name="Onboard_trans_counts,Onboard_trans_rev_paper_tix,Onboard_trans_rev_taps,Onboard_trans_rev_tot,Onboard_trans_rev_count"
                              target_system="Derived zone" target_path="towards_gravitational_waves"/>

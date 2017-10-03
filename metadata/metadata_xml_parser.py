@@ -43,11 +43,11 @@ class MetadataXMLParser:
 
                     for optype in operations.findall('op_type'):
 
-                        if (optype.get('name') == "transformation"):
+                        if (optype.get('name') == "integration"):
                                 metadatavalue = MetadataValue()
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
-                                optype_map['transformation'] = metadatavalue
+                                optype_map['integration'] = metadatavalue
 
                         if (optype.get('name') == "ingestion"):
                                 metadatavalue = MetadataValue()
