@@ -11,7 +11,7 @@ def runCreateQuery(self):
         create_database = 'CREATE DATABASE IF NOT EXISTS dev_bd_pilot'
 
         create_metadata = "CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(op_name STRING," \
-                          "job_type STRING,source_entity_name STRING, source_type STRING,source_location STRING," \
+                          "job_type STRING,source_entity_name STRING, source_type STRING,source_system STRING," \
                                     "source_path STRING, origin_system STRING, source_schema_name STRING, target_entity_name STRING," \
                                     "target_type STRING, target_location STRING, target_path STRING, target_schema_name STRING," \
                                     "target_system STRING) COMMENT 'Metadata Details' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n'" \

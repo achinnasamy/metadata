@@ -11,11 +11,11 @@ def start_main(status, ingestion_param):
         hdfsManager.fetchMetaDataFromHDFS()
 
         computing_manager = MetadataJobDetailComputingManager()
-        data = computing_manager.fetchJOBDetail()
+        data = computing_manager.fetchJOBDetail(status)
 
 
         hiveIngestor = MetadataHiveIngestor()
         hiveIngestor.ingestOperationalData(data)
 
 
-        print " \n\n\n Operational Data ingestion done..."
+        print " \n\n\n Operational Data ingestion done."

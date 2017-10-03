@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(
     job_type STRING
     source_entity_name STRING,
     source_type STRING,
-    source_location STRING,
+    source_system STRING,
     source_path STRING,
     origin_system STRING,
     source_schema_name STRING,

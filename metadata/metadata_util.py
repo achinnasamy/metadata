@@ -42,10 +42,10 @@ def find_all_xml_files_in_hdfs(hdfs_dir_path):
 #
 def get_process_id_of_application(application_name):
         #process_id = sp.Popen(["ps", "-aux", "|",  "grep", "-i", "hdfs", "|",  "awk" , "{'print $2'}"], stdout=sp.PIPE).communicate()[0]
-        list_of_processes = sp.Popen(["ps", "-aux"], stdout=sp.PIPE).communicate()[0]
-        for each_line in list_of_processes.splitlines():
-            if (each_line.__contains__("hdfs")):
-                print each_line.split(" ")[1]
+        # list_of_processes = sp.Popen(["ps", "-aux"], stdout=sp.PIPE).communicate()[0]
+        # for each_line in list_of_processes.splitlines():
+        #     if (each_line.__contains__("hdfs")):
+        #         print each_line.split(" ")[1]
         return
 
 
@@ -99,19 +99,33 @@ class MetadataCleanerService:
 class MetadataJobDetailComputingManager:
 
     # python metadata.egg
-    def fetchJOBDetail(self):
+    def fetchJOBDetail(self, status):
+
         metadatavalue = MetadataValue()
 
         get_process_id_of_application("")
 
-        metadatavalue.op_id = "OP_ID"       # get from linux hive or oozie  1 or 2
         metadatavalue.op_name = "OPNAME"    # Fetch it from xml
         metadatavalue.process_id= get_current_process_id()
         metadatavalue.op_start_time_stamp = get_current_time()
         metadatavalue.op_end_time_stamp = get_current_time()
-        metadatavalue.op_status = "RUNNING"  # from command line
+
+        if (status == "0"):
+            metadatavalue.op_status = "STARTED"
+        elif (status == "1"):
+            metadatavalue.op_status = "RUNNING"
+        elif (status == "2"):
+            metadatavalue.op_status = "SUCCESS"
+
+
         metadatavalue.op_owner = get_current_linux_user_name()
         metadatavalue.record_count = 100   # Need to get it from log file
-        metadatavalue.op_parent_process_name = get_parent_process_id() # from running or started or completed
+
+        if (status == "0"):
+            metadatavalue.op_parent_process_name = "OOZIE"
+        elif (status == "1"):
+            metadatavalue.op_parent_process_name = "BASH_SCRIPT"
+
+
 
         return metadatavalue

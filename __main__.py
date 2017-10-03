@@ -40,7 +40,6 @@ if __name__ == "__main__":
     if job == 'M':
         metadata_reckoner.start_main(ingestion_param)
     elif job == 'O':
-        print "Operational data reckoner started"
         operationaldata_reckoner.start_main(status, ingestion_param)
     elif job == 'create-hive':
         hive_manager.start_main(sys.argv[1:])
