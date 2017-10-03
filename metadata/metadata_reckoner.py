@@ -7,17 +7,8 @@ from metadata.metadata_xml_parser import MetadataXMLParser, XMLValidator
 
 class MetaDataReckoner:
 
-
-    def fetchMetaDataFromHDFS(self):
-        file_content_hdfs = execute_hdfs("metrolinx.xml")
-
-        file = open("/tmp/metadata.xml", "w")
-        file.write(file_content_hdfs)
-        file.close()
-
-        return
-
     # XSD Validation check for XML
+    # TODO: XSD validation is disabled for now. Enable it later
     def runMetadataXSDValidation(self):
         meta_data_validator = MetaDataValidator()
         return meta_data_validator.validateXMLUsingXSD("xml/metrolinx.xsd", "xml/metrolinx.xml")
@@ -37,25 +28,29 @@ class MetaDataReckoner:
 
 
 
-def start_main(argv):
+def start_main(ingestion_param):
 
     # Retrieve the XML file from HDFS
     metadataReckoner = MetaDataReckoner()
     metadataReckoner.fetchXMLFromHDFS()
 
-    metadataReckoner.fetchMetaDataFromHDFS()
+
+    hdfsManager = HDFSManager()
+    hdfsManager.fetchMetaDataFromHDFS()
+
 
     # If the metadata XSD validation passes, then proceed further
+    # TODO: XSD validation is disabled for now. Enable it later
     if metadataReckoner.runMetadataXSDValidation():
 
         # Parse the XML and fetch all the data
         metadataParser = MetadataXMLParser()
-        metadatavalue = metadataParser.parseXML()
+        optype_metadata_map = metadataParser.parseXML()
 
 
         # Validate the contents of XML
         xml_validator = XMLValidator()
-        did_xml_validation_succeed = xml_validator.validateXMLData(metadatavalue)
+        did_xml_validation_succeed = xml_validator.validateXMLData(optype_metadata_map)
 
 
         # If the XML validation is success, then go ahead.
@@ -63,13 +58,13 @@ def start_main(argv):
 
             # Should the validation return true, then ingest in Hive
             hiveIngestor = MetadataHiveIngestor()
-            hiveIngestor.ingestMetadata(metadatavalue)
+            hiveIngestor.ingestMetadata(optype_metadata_map, ingestion_param)
 
             cleanup_service = MetadataCleanerService()
             cleanup_service.cleanFiles()
 
 
-            print "Metadata Reckoner Done."
+            print "\n\n\n Metadata Reckoner Ingestion Done."
 
         else:
             print "\n\n\n So Sorry !!!! XML validation failed."

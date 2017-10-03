@@ -1,15 +1,17 @@
 import subprocess
 
-from metadata.metadata_util import find_all_xml_files_in_hdfs
+from metadata.metadata_util import find_all_xml_files_in_hdfs, execute_hdfs, TEMP_XML_FILE_LOCATION
 
 
 class HDFSManager:
 
-    def fetchXMLFileFromHDFS(self):
+    def fetchMetaDataFromHDFS(self):
+        file_content_hdfs = execute_hdfs("metrolinx.xml")
 
-        cat = subprocess.Popen("ls", stdout=subprocess.PIPE)
-        for line in cat.stdout:
-            print line
+        file = open(TEMP_XML_FILE_LOCATION, "w")
+        file.write(file_content_hdfs)
+        file.close()
+
         return
 
 

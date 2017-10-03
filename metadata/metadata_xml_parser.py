@@ -4,7 +4,7 @@ import xml.dom.minidom
 import xml.etree.ElementTree as ET
 
 #from metadata.metadata_enum import OPTYPE
-from metadata.metadata_util import MetadataValue, execute_hdfs
+from metadata.metadata_util import MetadataValue, execute_hdfs, TEMP_XML_FILE_LOCATION
 
 
 class MetadataXMLParser:
@@ -12,9 +12,10 @@ class MetadataXMLParser:
 
     def parseXML(self):
 
-        metadatavalue = MetadataValue()
 
-        tree = ET.parse('/tmp/metadata.xml')
+        optype_map = {}
+
+        tree = ET.parse(TEMP_XML_FILE_LOCATION)
 
         root = tree.getroot()
 
@@ -27,176 +28,80 @@ class MetadataXMLParser:
                     for optype in operations.findall('op_type'):
 
                         if (optype.get('name') == "transformation"):
-                            for att in optype.findall('attribute'):
-
-                                for each_element in list(att):
-
-                                    if (each_element.tag == "op_name"):
-                                        metadatavalue.op_name = each_element.text
-
-                                    elif (each_element.tag == "job_type"):
-                                        metadatavalue.job_type = each_element.text
-
-                                    elif (each_element.tag == "source_type"):
-                                        metadatavalue.source_type = each_element.text
-
-                                    elif (each_element.tag == "source_schema_name"):
-                                        metadatavalue.source_schema_name = each_element.text
-
-                                    elif (each_element.tag == "source_location"):
-                                        metadatavalue.source_location = each_element.text
-
-                                    elif (each_element.tag == "source_entity_name"):
-                                        metadatavalue.source_entity_name = each_element.text
-
-                                    elif (each_element.tag == "source_path"):
-                                        metadatavalue.source_path = each_element.text
-
-                                    elif (each_element.tag == "target_type"):
-                                        metadatavalue.target_type = each_element.text
-
-                                    elif (each_element.tag == "target_schema_name"):
-                                        metadatavalue.target_schema_name = each_element.text
-
-                                    elif (each_element.tag == "target_entity_name"):
-                                        metadatavalue.target_entity_name = each_element.text
-
-                                    elif (each_element.tag == "target_system"):
-                                        metadatavalue.target_system = each_element.text
-
-                                    elif (each_element.tag == "target_path"):
-                                        metadatavalue.target_path = each_element.text
+                                metadatavalue = MetadataValue()
+                                for job in optype:
+                                    self.populate_metadata_value(metadatavalue, job)
+                                optype_map['transformation'] = metadatavalue
 
                         if (optype.get('name') == "ingestion"):
-                            for att in optype.findall('attribute'):
-
-                                for each_element in list(att):
-
-                                    if (each_element.tag == "op_name"):
-                                        metadatavalue.op_name = each_element.text
-
-                                    elif (each_element.tag == "job_type"):
-                                        metadatavalue.job_type = each_element.text
-
-                                    elif (each_element.tag == "source_type"):
-                                        metadatavalue.source_type = each_element.text
-
-                                    elif (each_element.tag == "source_schema_name"):
-                                        metadatavalue.source_schema_name = each_element.text
-
-                                    elif (each_element.tag == "source_location"):
-                                        metadatavalue.source_location = each_element.text
-
-                                    elif (each_element.tag == "source_entity_name"):
-                                        metadatavalue.source_entity_name = each_element.text
-
-                                    elif (each_element.tag == "source_path"):
-                                        metadatavalue.source_path = each_element.text
-
-                                    elif (each_element.tag == "target_type"):
-                                        metadatavalue.target_type = each_element.text
-
-                                    elif (each_element.tag == "target_schema_name"):
-                                        metadatavalue.target_schema_name = each_element.text
-
-                                    elif (each_element.tag == "target_entity_name"):
-                                        metadatavalue.target_entity_name = each_element.text
-
-                                    elif (each_element.tag == "target_system"):
-                                        metadatavalue.target_system = each_element.text
-
-                                    elif (each_element.tag == "target_path"):
-                                        metadatavalue.target_path = each_element.text
+                                metadatavalue = MetadataValue()
+                                for job in optype:
+                                    self.populate_metadata_value(metadatavalue, job)
+                                optype_map['ingestion'] = metadatavalue
 
                         if (optype.get('name') == "curation"):
-                            for att in optype.findall('attribute'):
-
-                                for each_element in list(att):
-
-                                    if (each_element.tag == "op_name"):
-                                        metadatavalue.op_name = each_element.text
-
-                                    elif (each_element.tag == "job_type"):
-                                        metadatavalue.job_type = each_element.text
-
-                                    elif (each_element.tag == "source_type"):
-                                        metadatavalue.source_type = each_element.text
-
-                                    elif (each_element.tag == "source_schema_name"):
-                                        metadatavalue.source_schema_name = each_element.text
-
-                                    elif (each_element.tag == "source_location"):
-                                        metadatavalue.source_location = each_element.text
-
-                                    elif (each_element.tag == "source_entity_name"):
-                                        metadatavalue.source_entity_name = each_element.text
-
-                                    elif (each_element.tag == "source_path"):
-                                        metadatavalue.source_path = each_element.text
-
-                                    elif (each_element.tag == "target_type"):
-                                        metadatavalue.target_type = each_element.text
-
-                                    elif (each_element.tag == "target_schema_name"):
-                                        metadatavalue.target_schema_name = each_element.text
-
-                                    elif (each_element.tag == "target_entity_name"):
-                                        metadatavalue.target_entity_name = each_element.text
-
-                                    elif (each_element.tag == "target_system"):
-                                        metadatavalue.target_system = each_element.text
-
-                                    elif (each_element.tag == "target_path"):
-                                        metadatavalue.target_path = each_element.text
+                                metadatavalue = MetadataValue()
+                                for job in optype:
+                                    self.populate_metadata_value(metadatavalue, job)
+                                optype_map['curation'] = metadatavalue
 
                         if (optype.get('name') == "consumption"):
-                            for att in optype.findall('attribute'):
-
-                                for each_element in list(att):
-
-                                    if (each_element.tag == "op_name"):
-                                        metadatavalue.op_name = each_element.text
-
-                                    elif (each_element.tag == "job_type"):
-                                        metadatavalue.job_type = each_element.text
-
-                                    elif (each_element.tag == "source_type"):
-                                        metadatavalue.source_type = each_element.text
-
-                                    elif (each_element.tag == "source_schema_name"):
-                                        metadatavalue.source_schema_name = each_element.text
-
-                                    elif (each_element.tag == "source_location"):
-                                        metadatavalue.source_location = each_element.text
-
-                                    elif (each_element.tag == "source_entity_name"):
-                                        metadatavalue.source_entity_name = each_element.text
-
-                                    elif (each_element.tag == "source_path"):
-                                        metadatavalue.source_path = each_element.text
-
-                                    elif (each_element.tag == "target_type"):
-                                        metadatavalue.target_type = each_element.text
-
-                                    elif (each_element.tag == "target_schema_name"):
-                                        metadatavalue.target_schema_name = each_element.text
-
-                                    elif (each_element.tag == "target_entity_name"):
-                                        metadatavalue.target_entity_name = each_element.text
-
-                                    elif (each_element.tag == "target_system"):
-                                        metadatavalue.target_system = each_element.text
-
-                                    elif (each_element.tag == "target_path"):
-                                        metadatavalue.target_path = each_element.text
+                                metadatavalue = MetadataValue()
+                                for job in optype:
+                                    self.populate_metadata_value(metadatavalue, job)
+                                optype_map['consumption'] = metadatavalue
 
 
-        return metadatavalue
+        return optype_map
+
+
+
+    # Populate the metadatavalue DTO with the tags from xml
+    def populate_metadata_value(self, metadatavalue, job):
+        metadatavalue.op_name = job.get("op_name")
+        metadatavalue.job_type = job.get("job_type")
+        metadatavalue.source_type = job.get("source_type")
+        metadatavalue.source_schema_name = job.get("source_schema_name")
+        metadatavalue.source_system = job.get("source_system")
+        metadatavalue.source_entity_name = job.get("source_entity_name")
+        metadatavalue.source_path = job.get("source_path")
+        metadatavalue.target_type = job.get("target_type")
+        metadatavalue.target_schema_name = job.get("target_schema_name")
+        metadatavalue.target_entity_name = job.get("target_entity_name")
+        metadatavalue.target_system = job.get("target_system")
+        metadatavalue.target_path = job.get("target_path")
+        return
+
+
+    #
+    # Fetch the opname for the corresponding optypes
+    # TODO : Fetch the opname from XML
+    #
+    def fetch_opname_from_xml(self, list_of_op_types):
+
+        optype_opname = {}
+
+        tree = ET.parse(TEMP_XML_FILE_LOCATION)
+
+        root = tree.getroot()
+
+        for data in root.findall('data'):
+            for mt in data.findall('metadata_type'):
+                for operations in mt.findall('operations'):
+
+                    for optype in operations.findall('op_type'):
+
+                        if (optype.get('name') == "transformation"):
+                            optype_opname['transformation']
+
+        return
 
 
 class XMLValidator:
 
-    def validateXMLData(self, metadata_value):
+    # TODO : Validate the xml data at a later point
+    def validateXMLData(self, optype_metadata_map):
+
 
         return True
 
