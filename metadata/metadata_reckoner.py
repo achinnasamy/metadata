@@ -32,7 +32,7 @@ def start_main(ingestion_param):
 
     # Retrieve the XML file from HDFS
     metadataReckoner = MetaDataReckoner()
-    metadataReckoner.fetchXMLFromHDFS()
+    #metadataReckoner.fetchXMLFromHDFS()
 
 
     hdfsManager = HDFSManager()
