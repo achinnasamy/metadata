@@ -117,18 +117,21 @@ class MetadataJobDetailComputingManager:
 
         get_process_id_of_application("")
 
-        metadatavalue.op_name = "OPNAME"    # Fetch it from xml
+        metadatavalue.op_name = ""  # op_name is populated at a later stage
         metadatavalue.process_id= get_current_process_id()
-        metadatavalue.op_start_time_stamp = get_current_time()
-        metadatavalue.op_end_time_stamp = get_current_time()
 
-
+        metadatavalue.op_start_time_stamp = ''
+        metadatavalue.op_end_time_stamp = ''
+        metadatavalue.op_parent_process_name = ''
         if (status == "0"):
             metadatavalue.op_status = "STARTED"
+            metadatavalue.op_start_time_stamp = get_current_time()
+
         elif (status == "1"):
             metadatavalue.op_status = "RUNNING"
         elif (status == "2"):
             metadatavalue.op_status = "SUCCESS"
+            metadatavalue.op_end_time_stamp = get_current_time()
 
 
         metadatavalue.op_owner = get_current_linux_user_name()
