@@ -7,11 +7,12 @@
     <data>
 
         <metadata_type name="business">
-            <data unit="Information technology"
-                          tag="Revenue data"
-                          owner="Terry "
-                          data_source="RAMS"
-                          data_sensitivity="confidential"/>
+            <entity name="presto_stop_id_ref" business_unit=""  entity_business_definition="testtable">
+                <field name="prestostopid" field_business_definition="" />
+                <field name="longname"     field_business_definition="" />
+                <field name="shortname"    field_business_definition="" />
+                <field name="hustusstopid" field_business_definition="" />
+            </entity>
         </metadata_type>
 
         <metadata_type name="operation">
@@ -43,11 +44,11 @@
 
         <metadata_type name="technical">
 
-            <entity name="presto_stop_id_ref" comment="testtable">
-                <column name="prestostopid" data_type="int"    length="" comment="test"/>
-                <column name="longname"     data_type="string" length="" comment="test" />
-                <column name="shortname"    data_type="string" length="" comment="" />
-                <column name="hustusstopid" data_type="int"    length="" comment="test" />
+            <entity name="presto_stop_id_ref" entity_comment="testtable">
+                 <field name="prestostopid" field_type="int"     field_length="" feild_comment="test" field_precesion="" field_format=""/>
+                 <field name="longname"     field_type="string"  field_length="" feild_comment="test" field_precesion="" field_format=""/>
+                 <field name="shortname"    field_type="string"  field_length="" feild_comment="test" field_precesion="" field_format=""/>
+                 <field name="hustusstopid" field_type="int"     field_length="" feild_comment="test" field_precesion="" field_format=""/>
             </entity>
 
         </metadata_type>
