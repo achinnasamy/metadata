@@ -54,7 +54,7 @@ def execute_hdfs(filename):
 
     #result = sp.check_output('hdfs dfs -cat /metrolinux_metadatav2.xml')
 
-    result = sp.Popen(["hdfs", "dfs", "-cat", "/metrolinx.xml"], stdout=sp.PIPE).communicate()[0]
+    result = sp.Popen(["hdfs", "dfs", "-cat", "/user/hive/metrolinx.xml"], stdout=sp.PIPE).communicate()[0]
 
     return result
 
