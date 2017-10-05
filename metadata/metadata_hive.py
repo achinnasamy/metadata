@@ -19,7 +19,7 @@ class MetadataHiveIngestor:
 
             if each in ingestion_param:
                 print "\n\n Injesting " + each
-                complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_METADATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+                complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_METADATA_ONE values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
                                                                                                     % (optype_map[each].op_name,
                                                                                                        optype_map[each].job_type,
                                                                                                        optype_map[each].source_entity_name,
@@ -29,7 +29,6 @@ class MetadataHiveIngestor:
                                                                                                        optype_map[each].source_schema_name,
                                                                                                        optype_map[each].target_entity_name,
                                                                                                        optype_map[each].target_type,
-                                                                                                       optype_map[each].target_path,
                                                                                                        optype_map[each].target_path,
                                                                                                        optype_map[each].target_schema_name,
                                                                                                        optype_map[each].target_system)

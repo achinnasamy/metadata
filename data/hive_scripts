@@ -1,17 +1,15 @@
 CREATE DATABASE IF NOT EXISTS dev_bd_pilot;
 
-CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(
+CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA_ONE(
     op_name STRING,
-    job_type STRING
+    job_type STRING,
     source_entity_name STRING,
     source_type STRING,
     source_system STRING,
     source_path STRING,
-    origin_system STRING,
     source_schema_name STRING,
     target_entity_name STRING,
     target_type STRING,
-    target_location STRING,
     target_path STRING,
     target_schema_name STRING,
     target_system STRING
