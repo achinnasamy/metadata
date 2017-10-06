@@ -1,4 +1,5 @@
-from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager
+from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager, business_metadata_reckoner, \
+    technical_metadata_reckoner
 
 import sys
 import sys,getopt
@@ -41,6 +42,10 @@ if __name__ == "__main__":
         metadata_reckoner.start_main(ingestion_param)
     elif job == 'O':
         operationaldata_reckoner.start_main(status, ingestion_param)
+    elif job == 'B':
+        business_metadata_reckoner.start_main()
+    elif job == 'T':
+        technical_metadata_reckoner.start_main()
     elif job == 'create-hive':
         hive_manager.start_main(sys.argv[1:])
     else:

@@ -10,6 +10,69 @@ from metadata.metadata_util import MetadataValue, execute_hdfs, TEMP_XML_FILE_LO
 class MetadataXMLParser:
 
 
+    def parseBusinessXMLData(self):
+
+        business_metadata_list = []
+
+        tree = ET.parse(TEMP_XML_FILE_LOCATION)
+
+        root = tree.getroot()
+
+
+        for data in root.findall('data'):
+            for mt in data.findall('metadata_type'):
+
+                # Parsing of Business metadata type
+                if (mt.get('name') == "business"):
+                    for entity in mt.findall('entity'):
+
+                        for field in entity.findall('field'):
+                            metadatavalue = MetadataValue()
+                            metadatavalue.business_unit = entity.get('business_unit')
+                            metadatavalue.entity_name = entity.get('name')
+                            metadatavalue.entity_business_definition = entity.get('entity_business_definition')
+                            metadatavalue.field_name = field.get('name')
+                            metadatavalue.field_type = field.get('field_type')
+                            metadatavalue.field_business_definition = field.get('field_business_definition')
+
+                            business_metadata_list.append(metadatavalue)
+
+        return business_metadata_list
+
+
+    def parseTechnicalXMLData(self):
+
+        technical_metadata_list = []
+
+        tree = ET.parse(TEMP_XML_FILE_LOCATION)
+
+        root = tree.getroot()
+
+
+        for data in root.findall('data'):
+            for mt in data.findall('metadata_type'):
+
+                # Parsing of Business metadata type
+                if (mt.get('name') == "technical"):
+                    for entity in mt.findall('entity'):
+
+                        for field in entity.findall('field'):
+                            metadatavalue = MetadataValue()
+
+                            metadatavalue.entity_name = entity.get('name')
+                            metadatavalue.entity_comment = entity.get('entity_comment')
+                            metadatavalue.field_name = field.get('name')
+                            metadatavalue.field_type = field.get('field_type')
+                            metadatavalue.field_length = field.get('field_length')
+                            metadatavalue.field_comment = field.get('field_comment')
+                            metadatavalue.field_precision = field.get('field_precision')
+                            metadatavalue.field_format = field.get('field_format')
+
+                            technical_metadata_list.append(metadatavalue)
+
+        return technical_metadata_list
+
+
     def parseXML(self):
 
 
@@ -22,10 +85,6 @@ class MetadataXMLParser:
 
         for data in root.findall('data'):
             for mt in data.findall('metadata_type'):
-
-                # Parsing of Business metadata type
-                if (mt.get('name') == "business"):
-                    print mt.get('name')
 
                 # Parsing of Technical metadata type
                 if (mt.get('name') == "technical"):

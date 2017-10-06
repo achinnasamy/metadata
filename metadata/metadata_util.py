@@ -7,6 +7,7 @@ import os
 
 
 TEMP_XML_FILE_LOCATION = "/tmp/metrolinx.xml"
+HDFS_XML_FILE_LOCATION = "/user/hive/metrolinx.xml"
 
 #
 #  Gets the process id of java
@@ -54,8 +55,14 @@ def execute_hdfs(filename):
 
     #result = sp.check_output('hdfs dfs -cat /metrolinux_metadatav2.xml')
 
-    result = sp.Popen(["hdfs", "dfs", "-cat", "/user/hive/metrolinx.xml"], stdout=sp.PIPE).communicate()[0]
+    result = sp.Popen(["hdfs", "dfs", "-cat", HDFS_XML_FILE_LOCATION], stdout=sp.PIPE).communicate()[0]
 
+    return result
+
+
+def execute_query_and_fetch_output(query):
+
+    result = sp.Popen(query, shell=True,stdout=sp.PIPE,stderr=sp.PIPE).communicate()[0]
     return result
 
 def execute_query(query):
