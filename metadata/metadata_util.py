@@ -62,6 +62,7 @@ def execute_hdfs(filename):
 
 def execute_query_and_fetch_output(query):
 
+    print "Executing - " + query
     result = sp.Popen(query, shell=True,stdout=sp.PIPE,stderr=sp.PIPE).communicate()[0]
     return result
 
