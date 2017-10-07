@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS dev_bd_pilot;
 
-CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA_ONE(
+CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(
     op_name STRING,
     job_type STRING,
     source_entity_name STRING,
@@ -28,8 +28,11 @@ CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_DATA(
     op_end_time_stamp STRING,
     op_status STRING,
     op_owner STRING,
-    record_count STRING,
     op_parent_process_name STRING
+    src_entity_name STRING,
+    src_record_count STRING,
+    target_entity_name STRING,
+    target_record_count STRING
 )
 COMMENT 'Metadata Data'
 ROW FORMAT DELIMITED
@@ -65,7 +68,7 @@ CREATE TABLE IF NOT EXISTS dev_bd_pilot.bdpilot_business_metadata (
     FIELD_NAME STRING,
     FIELD_BUSINESS_DEFINITION STRING
 )
-COMMENT 'Technical Metadata'
+COMMENT 'Business Metadata'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'

@@ -3,11 +3,16 @@ import time
 import datetime
 import subprocess as sp
 import os
+import cx_Oracle
+
+
+
+
 
 from metadata.oracle_data_manager import OracleDataManager
 
-TEMP_XML_FILE_LOCATION = "/tmp/metrolinx.xml"
-TEMP_CSV_FILE_LOCATION = "/tmp/"
+TEMP_XML_FILE_LOCATION = "/home/devuser/metrolinx.xml"
+TEMP_CSV_FILE_LOCATION = "/home/devuser/"
 HDFS_XML_FILE_LOCATION = "/user/hive/metrolinx.xml"
 
 #
@@ -82,7 +87,6 @@ def fetchRowCountFromCSV(CSV_HDFS_PATH):
 def fetchRowCountFromHiveTable(table_name):
 
         complete_query = "hive -e 'SELECT COUNT(*) FROM %s'" % (table_name)
-        #complete_query = "/home/dharshekthvel/hive.sh"
         output = execute_query_and_fetch_output(complete_query)
 
         return output
@@ -150,7 +154,7 @@ class MetadataCleanerService:
 class MetadataJobDetailComputingManager:
 
     # python metadata.egg
-    def fetchJOBDetail(self, status, table, oracle_table_name, csv):
+    def fetchJOBDetail(self, status, table, oracle_table_name, csv_file_name):
 
         metadatavalue = MetadataValue()
 
@@ -177,14 +181,26 @@ class MetadataJobDetailComputingManager:
 
 
         if (table != 'NONE'):
-            metadatavalue.record_count = fetchRowCountFromHiveTable(table)
+            metadatavalue.src_entity_name = "NONE"
+            metadatavalue.src_record_count = 0
+            metadatavalue.target_entity_name = table
+            metadatavalue.target_record_count = fetchRowCountFromHiveTable(table)
         elif (oracle_table_name != 'NONE'):
             oracle = OracleDataManager()
-            metadatavalue.record_count = oracle.fetch_no_of_rows_from_oracle(oracle_table_name)
-        if (csv != 'NONE'):
-            metadatavalue.record_count = fetchRowCountFromCSV("/user/hive/query_result.csv")
+            metadatavalue.src_entity_name = oracle_table_name
+            metadatavalue.src_record_count = oracle.fetch_no_of_rows_from_oracle(oracle_table_name)
+            metadatavalue.target_entity_name = "NONE"
+            metadatavalue.target_record_count = 0
+        if (csv_file_name != 'NONE'):
+            metadatavalue.src_entity_name = csv_file_name
+            metadatavalue.src_record_count = fetchRowCountFromCSV(csv_file_name)
+            metadatavalue.target_entity_name = "NONE"
+            metadatavalue.target_record_count = 0
         else:
-            metadatavalue.record_count = 0
+            metadatavalue.src_entity_name = "NONE"
+            metadatavalue.src_record_count = 0
+            metadatavalue.target_entity_name = "NONE"
+            metadatavalue.target_record_count = 0
 
         if (status == "0"):
             metadatavalue.op_parent_process_name = "OOZIE"

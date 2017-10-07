@@ -131,8 +131,11 @@ class MetadataHiveIngestor:
                             data.op_end_time_stamp,
                             data.op_status,
                             data.op_owner,
-                            data.record_count,
-                            data.op_parent_process_name)
+                            data.op_parent_process_name,
+                            data.src_entity_name,
+                            data.src_record_count,
+                            data.target_entity_name,
+                            data.target_record_count)
 
         print complete_query
 
