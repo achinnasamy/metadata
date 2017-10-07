@@ -124,7 +124,7 @@ class MetadataHiveIngestor:
     def ingestOperationalData(self, data):
 
 
-        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_DATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_DATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
                          % (data.op_name,
                             data.process_id,
                             data.op_start_time_stamp,
