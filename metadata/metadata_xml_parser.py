@@ -4,7 +4,7 @@ import xml.dom.minidom
 import xml.etree.ElementTree as ET
 
 #from metadata.metadata_enum import OPTYPE
-from metadata.metadata_util import MetadataValue, execute_hdfs, TEMP_XML_FILE_LOCATION
+from metadata.metadata_util import MetadataValue, execute_hdfs, TEMP_XML_FILE_LOCATION, get_current_time
 
 
 class MetadataXMLParser:
@@ -34,6 +34,7 @@ class MetadataXMLParser:
                             metadatavalue.field_name = field.get('name')
                             metadatavalue.field_type = field.get('field_type')
                             metadatavalue.field_business_definition = field.get('field_business_definition')
+                            metadatavalue.time_stamp = get_current_time()
 
                             business_metadata_list.append(metadatavalue)
 
@@ -67,6 +68,7 @@ class MetadataXMLParser:
                             metadatavalue.field_comment = field.get('field_comment')
                             metadatavalue.field_precision = field.get('field_precision')
                             metadatavalue.field_format = field.get('field_format')
+                            metadatavalue.time_stamp = get_current_time()
 
                             technical_metadata_list.append(metadatavalue)
 

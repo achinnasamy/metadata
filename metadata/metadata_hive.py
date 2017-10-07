@@ -14,12 +14,13 @@ class MetadataHiveIngestor:
 
         for each in business_metadata_list:
 
-            complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_business_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" % (each.business_unit,
+            complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_business_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" % (each.business_unit,
                                                                                                                                                 each.entity_name,
                                                                                                                                                 each.entity_business_definition,
                                                                                                                                                 each.field_name,
                                                                                                                                                 each.field_type,
-                                                                                                                                                each.field_business_definition)
+                                                                                                                                                each.field_business_definition,
+                                                                                                                                                each.time_stamp)
 
             print complete_query
 
@@ -54,14 +55,15 @@ class MetadataHiveIngestor:
 
         for each in technical_metadata_list:
 
-            complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_technical_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" % (each.entity_name,
+            complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_technical_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" % (each.entity_name,
                                                                                                                                                                         each.entity_comment,
                                                                                                                                                                         each.field_name,
                                                                                                                                                                         each.field_type,
                                                                                                                                                                         each.field_comment,
                                                                                                                                                                         each.field_length,
                                                                                                                                                                         each.field_precision,
-                                                                                                                                                                        each.field_format)
+                                                                                                                                                                        each.field_format,
+                                                                                                                                                                        each.time_stamp)
 
             print complete_query
 
