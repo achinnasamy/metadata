@@ -130,18 +130,6 @@ class MetadataValue:
         self.__dict__= args
 
 
-class TechnicalData:
-
-    def __init__(self, _table_name, _column_name_0, _column_name_1, _column_name_2, _column_name_3 ):
-        self.table_name = _table_name
-        self.column_name_0 = _column_name_0
-        self.column_name_1 = _column_name_1
-        self.column_name_2 = _column_name_2
-        self.column_name_3 = _column_name_3
-
-
-
-
 class MetadataCleanerService:
 
     def cleanFiles(self):
