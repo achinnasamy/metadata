@@ -3,7 +3,7 @@ import time
 import datetime
 import subprocess as sp
 import os
-import cx_Oracle
+#import cx_Oracle
 
 
 
