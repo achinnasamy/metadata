@@ -5,7 +5,7 @@ from metadata.metadata_util import MetadataJobDetailComputingManager
 from metadata.metadata_xml_parser import MetadataXMLParser
 
 
-def start_main(status, ingestion_param):
+def start_main(status, ingestion_param, table, oracle, csv):
 
         print " \n\n\n Operational Data ingestion started..."
 
@@ -13,7 +13,7 @@ def start_main(status, ingestion_param):
         hdfsManager.fetchMetaDataFromHDFS()
 
         computing_manager = MetadataJobDetailComputingManager()
-        data = computing_manager.fetchJOBDetail(status)
+        data = computing_manager.fetchJOBDetail(status, table, oracle, csv)
 
         ###########################################################################################
 

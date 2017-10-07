@@ -4,9 +4,10 @@ import datetime
 import subprocess as sp
 import os
 
-
+from metadata.oracle_data_manager import OracleDataManager
 
 TEMP_XML_FILE_LOCATION = "/tmp/metrolinx.xml"
+TEMP_CSV_FILE_LOCATION = "/tmp/"
 HDFS_XML_FILE_LOCATION = "/user/hive/metrolinx.xml"
 
 #
@@ -60,11 +61,41 @@ def execute_hdfs(filename):
     return result
 
 
+def fetchRowCountFromCSV(CSV_HDFS_PATH):
+
+
+        result = sp.Popen(["hdfs", "dfs", "-cat", CSV_HDFS_PATH], stdout=sp.PIPE).communicate()[0]
+        no_of_rows = len(result.split('\n'))
+
+        #import os
+        #FILE_NAME = os.path.basename(CSV_HDFS_PATH)
+        #file = open(TEMP_CSV_FILE_LOCATION+FILE_NAME, "w")
+        #file.write(result)
+        #file.close()
+
+        return no_of_rows
+
+
+#
+#
+#
+def fetchRowCountFromHiveTable(table_name):
+
+        complete_query = "hive -e 'SELECT COUNT(*) FROM %s'" % (table_name)
+        #complete_query = "/home/dharshekthvel/hive.sh"
+        output = execute_query_and_fetch_output(complete_query)
+
+        return output
+
+#
+# This is used to get the row count of managed table
+#
 def execute_query_and_fetch_output(query):
 
-    print "Executing - " + query
+    print "\nFetching row count of : " + query
     result = sp.Popen(query, shell=True,stdout=sp.PIPE,stderr=sp.PIPE).communicate()[0]
-    return result
+    result = result.replace('\n\n', '')
+    return result.split('\n', 1)[0]
 
 def execute_query(query):
 
@@ -119,7 +150,7 @@ class MetadataCleanerService:
 class MetadataJobDetailComputingManager:
 
     # python metadata.egg
-    def fetchJOBDetail(self, status):
+    def fetchJOBDetail(self, status, table, oracle_table_name, csv):
 
         metadatavalue = MetadataValue()
 
@@ -143,7 +174,17 @@ class MetadataJobDetailComputingManager:
 
 
         metadatavalue.op_owner = get_current_linux_user_name()
-        metadatavalue.record_count = 100   # Need to get it from log file
+
+
+        if (table != 'NONE'):
+            metadatavalue.record_count = fetchRowCountFromHiveTable(table)
+        elif (oracle_table_name != 'NONE'):
+            oracle = OracleDataManager()
+            metadatavalue.record_count = oracle.fetch_no_of_rows_from_oracle(oracle_table_name)
+        if (csv != 'NONE'):
+            metadatavalue.record_count = fetchRowCountFromCSV("/user/hive/query_result.csv")
+        else:
+            metadatavalue.record_count = 0
 
         if (status == "0"):
             metadatavalue.op_parent_process_name = "OOZIE"

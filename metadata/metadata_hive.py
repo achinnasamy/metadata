@@ -7,34 +7,6 @@ from metadata.metadata_util import execute_query, execute_query_and_fetch_output
 
 class MetadataHiveIngestor:
 
-
-
-    #
-    #
-    #
-    def fetchRowCountFromHiveTable(self, table_name):
-
-        complete_query = "hive -e 'SELECT COUNT(*) FROM %s'" % (table_name)
-        #complete_query = "/home/dharshekthvel/hive.sh"
-        output = execute_query_and_fetch_output(complete_query)
-
-        print output
-
-        return
-
-    def fetchRowCountFromOracleTable(self, table_name):
-
-        complete_query = "hive -e 'SELECT COUNT(*) FROM %s'" % (table_name)
-
-        return
-
-    def fetchRowCountFromCSV(self, csv_hdfs_path):
-
-        complete_query = "hive -e 'SELECT COUNT(*) FROM %s'" % (csv_hdfs_path)
-
-        return
-
-
     #
     #
     #
@@ -151,7 +123,7 @@ class MetadataHiveIngestor:
 
     def ingestOperationalData(self, data):
 
-        self.fetchRowCountFromHiveTable("dev_bd_pilot.OPERATIONAL_DATA")
+
         complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_DATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
                          % (data.op_name,
                             data.process_id,
