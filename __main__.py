@@ -7,6 +7,7 @@ import sys,getopt
 def help():
     help_statement = "The METADATA job has to be started using the following protocols: \n\n\n" \
                      "  Metadata Ingestion           : python metadata-XXX.egg --job=M \n \n  Operational Data Ingestion   : python metadata-XXX.egg --job=O --status=0 --jobtype=ingestion --table=dev_bd_pilot.OPERATIONAL_DATA --csv=/user/hive/query_result.csv --oracle=OPERATIONAL_METADATA\n\n" \
+                     " \n \n Creation of Business Metadata : python metadata-XXX.egg --job=B \n \n Creation of Technical Metadata : python metadata-XXX.egg --job=T \n\n" \    
                      "  Creation of hive tables      : python metadata-XXX.egg --job=create-hive \n \n  Help                         : python metadata-XXX.egg --help \n\n " \
                      " Status : 0 - STARTED, 1 - RUNNING, 2 - SUCCESS \n Jobtype : ingestion, integration, consumption, curation"
     return help_statement
