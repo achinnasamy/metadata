@@ -71,6 +71,16 @@ if __name__ == "__main__":
         business_metadata_reckoner.start_main()
     elif job == 'T':
         technical_metadata_reckoner.start_main()
+    elif len(job.split(",")) > 1:
+        job_array = job.split(",")
+        for each_job in job_array:
+            if each_job == 'M':
+                metadata_reckoner.start_main(ingestion_param)
+            elif each_job == 'B':
+                business_metadata_reckoner.start_main()
+            elif each_job == 'T':
+                technical_metadata_reckoner.start_main()
+
     elif job == 'create-hive':
         hive_manager.start_main(sys.argv[1:])
     else:

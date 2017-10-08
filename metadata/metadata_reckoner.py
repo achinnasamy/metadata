@@ -56,6 +56,8 @@ def start_main(ingestion_param):
         # If the XML validation is success, then go ahead.
         if did_xml_validation_succeed:
 
+            print "\n\n\n Metadata Reckoner Ingestion Started."
+
             # Should the validation return true, then ingest in Hive
             hiveIngestor = MetadataHiveIngestor()
             hiveIngestor.ingestMetadata(optype_metadata_map, ingestion_param)
