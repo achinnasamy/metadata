@@ -30,7 +30,7 @@ def fetch_table_name(table_short):
 
 if __name__ == "__main__":
 
-    
+
     job = ''
     table = 'NONE'
     oracle = 'NONE'

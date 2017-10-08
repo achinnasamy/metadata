@@ -65,6 +65,15 @@ def execute_hdfs(filename):
 
     return result
 
+#
+# FILE_TO_BE_WRITTEN =
+#
+def write_file_to_hdfs(FILE_TO_BE_WRITTEN, HDFS_PATH):
+
+    sp.Popen(["hdfs", "dfs", "-put", FILE_TO_BE_WRITTEN, HDFS_PATH], stdout=sp.PIPE).communicate()[0]
+
+    return
+
 
 def fetchRowCountFromCSV(CSV_HDFS_PATH):
 

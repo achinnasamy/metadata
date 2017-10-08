@@ -27,7 +27,7 @@ class MetadataHiveIngestor:
             execute_query(complete_query)
 
 
-        self.createBusinessMetadataTable(business_metadata_list)
+        #self.createBusinessMetadataTable(business_metadata_list)
         return
 
 
@@ -126,8 +126,9 @@ class MetadataHiveIngestor:
     def ingestOperationalData(self, data):
 
 
-        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_DATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
-                         % (data.op_name,
+        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_DATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+                         % (data.op_type,
+                            data.op_name,
                             data.process_id,
                             data.op_start_time_stamp,
                             data.op_end_time_stamp,

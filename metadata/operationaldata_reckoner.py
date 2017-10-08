@@ -29,6 +29,7 @@ def start_main(status, ingestion_param, table, oracle, csv):
         optype_metadata_map = metadataParser.parseXML()
 
         data.op_name = optype_metadata_map[ingestion_param[0]].op_name
+        data.op_type = optype_metadata_map[ingestion_param[0]].op_type
         ###########################################################################################
 
         hiveIngestor = MetadataHiveIngestor()

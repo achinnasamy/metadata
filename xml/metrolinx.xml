@@ -25,7 +25,7 @@
 
                     </op_type>
                     <op_type name="curation">
-                          <job op_name="RAMS_PRESTO_load.sh" job_type="bash script" source_type="HIVE_LOCAL" source_schema_name="DEV_BD_PILOT" source_entity_name="RAMS_PRESTO_USAGE_TEMP" source_system="" source_path="oracle:thin:@10.100.29.40:1522/revntest"
+                          <job op_name="RAMS_PRESTO_CUR_load.sh" job_type="bash script" source_type="HIVE_LOCAL" source_schema_name="DEV_BD_PILOT" source_entity_name="RAMS_PRESTO_USAGE_TEMP" source_system="" source_path="oracle:thin:@10.100.29.40:1522/revntest"
                              target_type="HIVE_LOCAL" target_schema_name="DEV_BD_PILOT" target_entity_name="Onboard_trans_counts,Onboard_trans_rev_paper_tix,Onboard_trans_rev_taps,Onboard_trans_rev_tot,Onboard_trans_rev_count"
                              target_system="Derived zone" target_path="towards_gravitational_waves"/>
                     </op_type>

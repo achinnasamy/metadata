@@ -1,5 +1,8 @@
 from flask import Flask, request
 import xml.etree.ElementTree as ET
+
+from metadata.metadata_util import write_file_to_hdfs
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -10,6 +13,9 @@ def rootBusinessDatat():
 @app.route("/update", methods=['GET', 'POST'])
 def updateBusinessData():
 
+    LOCAL_XML_FILE_PATH = "/tmp/new.xml"
+    HDFS_XML_PATH = "/"
+
     xml = request.data
 
     file = open("../xml/metrolinux_metadata_static.xml", "r")
@@ -19,9 +25,12 @@ def updateBusinessData():
 
     file.close()
 
-    file = open("/home/dharshekthvel/NEW.xml", "w")
+    # TODO: Need to delete the file after writing
+    file = open(LOCAL_XML_FILE_PATH, "w")
     file.write(new_xml_file_contents)
     file.close()
+
+    write_file_to_hdfs(LOCAL_XML_FILE_PATH, HDFS_XML_PATH)
 
     return "0"
 

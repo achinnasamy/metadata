@@ -106,24 +106,28 @@ class MetadataXMLParser:
 
                         if (optype.get('name') == "integration"):
                                 metadatavalue = MetadataValue()
+                                metadatavalue.op_type = "integration"
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
                                 optype_map['integration'] = metadatavalue
 
                         if (optype.get('name') == "ingestion"):
                                 metadatavalue = MetadataValue()
+                                metadatavalue.op_type = "ingestion"
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
                                 optype_map['ingestion'] = metadatavalue
 
                         if (optype.get('name') == "curation"):
                                 metadatavalue = MetadataValue()
+                                metadatavalue.op_type = "curation"
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
                                 optype_map['curation'] = metadatavalue
 
                         if (optype.get('name') == "consumption"):
                                 metadatavalue = MetadataValue()
+                                metadatavalue.op_type = "consumption"
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
                                 optype_map['consumption'] = metadatavalue
