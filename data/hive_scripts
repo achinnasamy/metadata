@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS dev_bd_pilot;
 
 CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(
+    op_type STRING,
     op_name STRING,
     job_type STRING,
     source_entity_name STRING,
