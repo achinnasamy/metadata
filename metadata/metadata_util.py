@@ -13,7 +13,7 @@ from metadata.oracle_data_manager import OracleDataManager
 
 TEMP_XML_FILE_LOCATION = "/home/devuser/metrolinx.xml"
 TEMP_CSV_FILE_LOCATION = "/home/devuser/"
-HDFS_XML_FILE_LOCATION = "/user/hive/metrolinx.xml"
+HDFS_XML_FILE_LOCATION = "/user/devuser/metrolinx1.xml"
 
 #
 #  Gets the process id of java
