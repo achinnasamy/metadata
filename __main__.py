@@ -1,5 +1,5 @@
 from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager, business_metadata_reckoner, \
-    technical_metadata_reckoner
+    technical_metadata_reckoner, business_metadata_service_api_server
 
 import sys
 import sys,getopt
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     if job == 'M':
         metadata_reckoner.start_main(ingestion_param)
     elif job == 'O':
-        operationaldata_reckoner.start_main(status, ingestion_param, fetch_table_name(table), fetch_table_name(oracle), fetch_table_name(csv))
+        operationaldata_reckoner.start_main(status, ingestion_param, fetch_table_name(table), fetch_table_name(oracle), csv)
     elif job == 'B':
         business_metadata_reckoner.start_main()
     elif job == 'T':
@@ -83,6 +83,8 @@ if __name__ == "__main__":
 
     elif job == 'create-hive':
         hive_manager.start_main(sys.argv[1:])
+    elif job == 'business-service':
+        business_metadata_service_api_server.start_main()
     else:
         print "\n\n Metadata Ingestion cannot start with options - " + job + "\n\n"
         print help()

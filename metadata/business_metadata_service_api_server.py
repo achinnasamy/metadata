@@ -55,6 +55,8 @@ def receiveBusinessData():
 #         new_tree = ET.ElementTree(root)
 #         new_tree.write("/home/user/ac/a.xml")
 
+def start_main():
+    app.run(host='0.0.0.0', debug=True)
 
 if __name__ == '__main__':
     app.run(host= '0.0.0.0',debug=True)

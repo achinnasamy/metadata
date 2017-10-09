@@ -82,7 +82,7 @@ class MetadataHiveIngestor:
             for each in technical_metadata_list:
                 field_names += "%s %s," % (each.field_name.upper(), each.field_type.upper())
 
-            query = "hive -e 'CREATE TABLE IF NOT EXISTS %s(%s) COMMENT 'Technical Metadata' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\\t' LINES TERMINATED BY '\\n' STORED AS TEXTFILE'" % (
+            query = "hive -e 'CREATE TABLE IF NOT EXISTS %s(%s) ROW FORMAT DELIMITED FIELDS TERMINATED BY \"\\t\" LINES TERMINATED BY \"\\n\" STORED AS TEXTFILE'" % (
             table_name, field_names[:-1])
 
             print query
