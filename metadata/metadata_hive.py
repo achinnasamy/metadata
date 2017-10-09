@@ -101,7 +101,7 @@ class MetadataHiveIngestor:
 
             if each in ingestion_param:
                 print "\n\n Injesting " + each
-                complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_METADATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+                complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_operational_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
                                                                                                     % (optype_map[each].op_type,
                                                                                                        optype_map[each].op_name,
                                                                                                        optype_map[each].job_type,
@@ -127,7 +127,7 @@ class MetadataHiveIngestor:
     def ingestOperationalData(self, data):
 
 
-        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.OPERATIONAL_DATA values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+        complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_operational_data values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
                          % (data.op_type,
                             data.op_name,
                             data.process_id,

@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS dev_bd_pilot;
 
-CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(
+CREATE TABLE IF NOT EXISTS dev_bd_pilot.bdpilot_operational_metadata(
     op_type STRING,
     op_name STRING,
     job_type STRING,
@@ -22,7 +22,7 @@ LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
 
 
-CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_DATA(
+CREATE TABLE IF NOT EXISTS dev_bd_pilot.bdpilot_operational_data(
     op_type STRING,
     op_name STRING,
     process_id STRING,
