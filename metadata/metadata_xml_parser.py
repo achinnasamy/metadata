@@ -88,14 +88,14 @@ class MetadataXMLParser:
         for data in root.findall('data'):
             for mt in data.findall('metadata_type'):
 
-                # Parsing of Technical metadata type
-                if (mt.get('name') == "technical"):
-                    for entity in mt.findall('entity'):
-
-                        technical_data_map = {}
-                        technical_data_map["table_name"] = entity.get('name')
-                        for column in entity.findall('column'):
-                            technical_data_map[column.get("name")] = entity.get('data_type')
+                # # Parsing of Technical metadata type
+                # if (mt.get('name') == "technical"):
+                #     for entity in mt.findall('entity'):
+                #
+                #         technical_data_map = {}
+                #         technical_data_map["table_name"] = entity.get('name')
+                #         for column in entity.findall('column'):
+                #             technical_data_map[column.get("name")] = entity.get('data_type')
 
 
 
@@ -158,24 +158,24 @@ class MetadataXMLParser:
     # Fetch the opname for the corresponding optypes
     # TODO : Fetch the opname from XML
     #
-    def fetch_opname_from_xml(self, list_of_op_types):
-
-        optype_opname = {}
-
-        tree = ET.parse(TEMP_XML_FILE_LOCATION)
-
-        root = tree.getroot()
-
-        for data in root.findall('data'):
-            for mt in data.findall('metadata_type'):
-                for operations in mt.findall('operations'):
-
-                    for optype in operations.findall('op_type'):
-
-                        if (optype.get('name') == "transformation"):
-                            optype_opname['transformation']
-
-        return
+    # def fetch_opname_from_xml(self, list_of_op_types):
+    #
+    #     optype_opname = {}
+    #
+    #     tree = ET.parse(TEMP_XML_FILE_LOCATION)
+    #
+    #     root = tree.getroot()
+    #
+    #     for data in root.findall('data'):
+    #         for mt in data.findall('metadata_type'):
+    #             for operations in mt.findall('operations'):
+    #
+    #                 for optype in operations.findall('op_type'):
+    #
+    #                     if (optype.get('name') == "transformation"):
+    #                         optype_opname['transformation']
+    #
+    #     return
 
 
 class XMLValidator:

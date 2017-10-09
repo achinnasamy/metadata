@@ -41,19 +41,19 @@ def receiveBusinessData():
 
 
 
-class RestXMLParser:
-
-    def insertBusinessTagToXML(self, element_to_be_inserted):
-
-        tree = ET.parse("../xml/metrolinux_metadata_static.xml")
-
-        root = tree.getroot()
-
-        data = root.findall('data')
-        data.insert(0, element_to_be_inserted)
-
-        new_tree = ET.ElementTree(root)
-        new_tree.write("/home/dharshekthvel/ac/a.xml")
+# class RestXMLParser:
+#
+#     def insertBusinessTagToXML(self, element_to_be_inserted):
+#
+#         tree = ET.parse("../xml/metrolinx_metadata_static.xml")
+#
+#         root = tree.getroot()
+#
+#         data = root.findall('data')
+#         data.insert(0, element_to_be_inserted)
+#
+#         new_tree = ET.ElementTree(root)
+#         new_tree.write("/home/user/ac/a.xml")
 
 
 if __name__ == '__main__':

@@ -24,7 +24,7 @@ def fetch_table_name(table_short):
         if(each.name == table_short):
             complete_table_name = each.get_value()
 
-    return complete_table_name
+    return "RVN_PROD.RAMS_PRESTO_USAGE_TEMP"
 
 
 
