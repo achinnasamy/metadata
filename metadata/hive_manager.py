@@ -1,11 +1,3 @@
-from metadata.metadata_util import execute_query
-
-
-
-
-    #
-    # Create run scripts for Hive
-    #
 def create_hive_tables():
 
 

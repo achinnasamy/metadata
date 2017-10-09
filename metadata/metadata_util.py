@@ -39,7 +39,8 @@ def find_all_xml_files_in_hdfs(hdfs_dir_path):
 
     # To fetch the recent xml use the command - hdfs dfs -ls -C -t /metro*
     list_of_xml_files = []
-    all_xml_files = sp.Popen(["hdfs", "dfs", "-ls", "-C", "/*.xml"], stdout=sp.PIPE).communicate()[0]
+    #all_xml_files = sp.Popen(["hdfs", "dfs", "-ls", "-C", "/*.xml"], stdout=sp.PIPE).communicate()[0]
+    all_xml_files = sp.Popen(["hdfs", "dfs", "-ls", "/*.xml"], stdout=sp.PIPE).communicate()[0]
 
     for each_file in all_xml_files.splitlines():
         list_of_xml_files.append(each_file.replace("/",""))

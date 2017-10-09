@@ -5,3 +5,6 @@ XSD Generator: https://www.freeformatter.com/xsd-generator.html
 --job=M --status=0 --jobtype=curation,ingestion
 
 --job=create-hive
+
+
+--job=O --table=C1 --jobtype=ingestion --status=0

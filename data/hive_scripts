@@ -1,1 +1,13 @@
 CREATE DATABASE IF NOT EXISTS dev_bd_pilot;
+
+
+
+
+INSERT INTO TABLE dev_bd_pilot.v_bdpilot_cnsld_metadata
+
+
+
+
+
+INSERT INTO TABLE dev_bd_pilot.v_bdpilot_cnsld_operations_data (SELECT
+

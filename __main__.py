@@ -5,6 +5,7 @@ import sys
 import sys,getopt
 
 #from metadata.metadata_enum import METROLINX_TABLES
+from metadata.metadata_enum import METROLINX_TABLES
 
 
 def help():
@@ -18,13 +19,7 @@ def help():
 
 
 def fetch_table_name(table_short):
-
-    # complete_table_name = "NONE"
-    # for each in METROLINX_TABLES:
-    #     if(each.name == table_short):
-    #         complete_table_name = each.get_value()
-
-    return "RVN_PROD.RAMS_PRESTO_USAGE_TEMP"
+    return  METROLINX_TABLES.get(table_short)
 
 
 

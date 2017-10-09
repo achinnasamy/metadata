@@ -16,7 +16,7 @@
 #
 #     todays_date = get_date()
 #     LOCAL_XML_FILE_PATH = "/tmp/metadata-%s.xml" % (todays_date)
-#     HDFS_XML_PATH = "/"
+#     HDFS_XML_PATH = "/user/devuser/"
 #
 #
 #     xml = request.data
