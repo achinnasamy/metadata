@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS dev_bd_pilot.bdpilot_operational_data(
     op_end_time_stamp STRING,
     op_status STRING,
     op_owner STRING,
-    op_parent_process_name STRING
+    op_parent_process_name STRING,
     src_entity_name STRING,
     src_record_count STRING,
     target_entity_name STRING,
