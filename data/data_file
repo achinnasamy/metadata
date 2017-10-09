@@ -1,1 +1,5 @@
 XSD Generator: https://www.freeformatter.com/xsd-generator.html
+
+--job=O --status=0 --jobtype=curation --csv=/user/hive/query_result.csv
+
+--job=M --status=0 --jobtype=curation,ingestion

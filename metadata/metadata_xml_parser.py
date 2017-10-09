@@ -34,7 +34,7 @@ class MetadataXMLParser:
                             metadatavalue.field_name = field.get('name')
                             metadatavalue.field_type = field.get('field_type')
                             metadatavalue.field_business_definition = field.get('field_business_definition')
-                            metadatavalue.time_stamp = get_current_time()
+                            metadatavalue.date_modified = get_current_time()
 
                             business_metadata_list.append(metadatavalue)
 
@@ -68,7 +68,7 @@ class MetadataXMLParser:
                             metadatavalue.field_comment = field.get('field_comment')
                             metadatavalue.field_precision = field.get('field_precision')
                             metadatavalue.field_format = field.get('field_format')
-                            metadatavalue.time_stamp = get_current_time()
+                            metadatavalue.date_modified = get_current_time()
 
                             technical_metadata_list.append(metadatavalue)
 
@@ -140,7 +140,8 @@ class MetadataXMLParser:
     # Populate the metadatavalue DTO with the tags from xml
     def populate_metadata_value(self, metadatavalue, job):
         metadatavalue.op_name = job.get("op_name")
-        metadatavalue.job_type = job.get("job_type")
+        metadatavalue.script_type = job.get("script_type")
+        metadatavalue.script_location = job.get("script_location")
         metadatavalue.source_type = job.get("source_type")
         metadatavalue.source_schema_name = job.get("source_schema_name")
         metadatavalue.source_system = job.get("source_system")
@@ -151,6 +152,7 @@ class MetadataXMLParser:
         metadatavalue.target_entity_name = job.get("target_entity_name")
         metadatavalue.target_system = job.get("target_system")
         metadatavalue.target_path = job.get("target_path")
+        metadatavalue.date_modified = get_current_time()
         return
 
 

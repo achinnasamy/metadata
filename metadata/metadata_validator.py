@@ -18,7 +18,7 @@ class MetaDataValidator:
         # xml_doc = etree.parse(xml_file)
         # result = xmlschema.validate(xml_doc)
 
-        #return result
+        # return result
 
         # TODO : XSD Validation is disabled for now
         return True

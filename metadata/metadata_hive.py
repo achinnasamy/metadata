@@ -20,7 +20,7 @@ class MetadataHiveIngestor:
                                                                                                                                                 each.field_name,
                                                                                                                                                 each.field_type,
                                                                                                                                                 each.field_business_definition,
-                                                                                                                                                each.time_stamp)
+                                                                                                                                                each.date_modified)
 
             print complete_query
 
@@ -63,7 +63,7 @@ class MetadataHiveIngestor:
                                                                                                                                                                         each.field_length,
                                                                                                                                                                         each.field_precision,
                                                                                                                                                                         each.field_format,
-                                                                                                                                                                        each.time_stamp)
+                                                                                                                                                                        each.date_modified)
 
             print complete_query
 
@@ -101,10 +101,11 @@ class MetadataHiveIngestor:
 
             if each in ingestion_param:
                 print "\n\n Injesting " + each
-                complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_operational_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+                complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_operational_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
                                                                                                     % (optype_map[each].op_type,
                                                                                                        optype_map[each].op_name,
-                                                                                                       optype_map[each].job_type,
+                                                                                                       optype_map[each].script_type,
+                                                                                                       optype_map[each].script_location,
                                                                                                        optype_map[each].source_entity_name,
                                                                                                        optype_map[each].source_type,
                                                                                                        optype_map[each].source_system,
@@ -114,7 +115,8 @@ class MetadataHiveIngestor:
                                                                                                        optype_map[each].target_type,
                                                                                                        optype_map[each].target_path,
                                                                                                        optype_map[each].target_schema_name,
-                                                                                                       optype_map[each].target_system)
+                                                                                                       optype_map[each].target_system,
+                                                                                                       optype_map[each].date_modified)
 
 
                 print complete_query

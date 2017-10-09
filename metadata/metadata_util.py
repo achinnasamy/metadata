@@ -28,6 +28,10 @@ def get_current_time():
     return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H:%M:%S')
 
 
+def get_date():
+    ts = time.time()
+    return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
+
 #
 # Find all xml files and put it in a list and send it back
 #
@@ -87,7 +91,7 @@ def fetchRowCountFromCSV(CSV_HDFS_PATH):
         #file.write(result)
         #file.close()
 
-        return no_of_rows
+        return no_of_rows - 1
 
 
 #

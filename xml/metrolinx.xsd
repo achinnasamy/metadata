@@ -11,8 +11,33 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="metadata_type" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType mixed="true">
+                <xs:complexType>
                   <xs:sequence>
+                    <xs:element name="entity" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="field" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                                  <xs:attribute type="xs:string" name="field_type" use="optional"/>
+                                  <xs:attribute type="xs:string" name="field_business_definition" use="optional"/>
+                                  <xs:attribute type="xs:string" name="field_length" use="optional"/>
+                                  <xs:attribute type="xs:string" name="field_comment" use="optional"/>
+                                  <xs:attribute type="xs:string" name="field_precision" use="optional"/>
+                                  <xs:attribute type="xs:string" name="field_format" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                        <xs:attribute type="xs:string" name="business_unit" use="optional"/>
+                        <xs:attribute type="xs:string" name="entity_business_definition" use="optional"/>
+                        <xs:attribute type="xs:string" name="entity_comment" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
                     <xs:element type="xs:string" name="data_steward" minOccurs="0"/>
                     <xs:element name="operations" minOccurs="0">
                       <xs:complexType>
@@ -20,22 +45,25 @@
                           <xs:element name="op_type" maxOccurs="unbounded" minOccurs="0">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="attribute">
+                                <xs:element name="job">
                                   <xs:complexType>
-                                    <xs:sequence>
-                                      <xs:element type="xs:string" name="op_name"/>
-                                      <xs:element type="xs:string" name="job_type"/>
-                                      <xs:element type="xs:string" name="source_type"/>
-                                      <xs:element type="xs:string" name="source_schema_name"/>
-                                      <xs:element type="xs:string" name="source_location"/>
-                                      <xs:element type="xs:string" name="source_entity_name"/>
-                                      <xs:element type="xs:string" name="source_path"/>
-                                      <xs:element type="xs:string" name="target_type"/>
-                                      <xs:element type="xs:string" name="target_schema_name"/>
-                                      <xs:element type="xs:string" name="target_entity_name"/>
-                                      <xs:element type="xs:string" name="target_system"/>
-                                      <xs:element type="xs:string" name="target_path"/>
-                                    </xs:sequence>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:string">
+                                        <xs:attribute type="xs:string" name="op_name" use="optional"/>
+                                        <xs:attribute type="xs:string" name="script_type" use="optional"/>
+                                        <xs:attribute type="xs:string" name="script_location" use="optional"/>
+                                        <xs:attribute type="xs:string" name="source_type" use="optional"/>
+                                        <xs:attribute type="xs:string" name="source_schema_name" use="optional"/>
+                                        <xs:attribute type="xs:string" name="source_entity_name" use="optional"/>
+                                        <xs:attribute type="xs:string" name="source_system" use="optional"/>
+                                        <xs:attribute type="xs:string" name="source_path" use="optional"/>
+                                        <xs:attribute type="xs:string" name="target_type" use="optional"/>
+                                        <xs:attribute type="xs:string" name="target_schema_name" use="optional"/>
+                                        <xs:attribute type="xs:string" name="target_entity_name" use="optional"/>
+                                        <xs:attribute type="xs:string" name="target_system" use="optional"/>
+                                        <xs:attribute type="xs:string" name="target_path" use="optional"/>
+                                      </xs:extension>
+                                    </xs:simpleContent>
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>
