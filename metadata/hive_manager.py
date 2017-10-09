@@ -6,22 +6,30 @@ from metadata.metadata_util import execute_query
     #
     # Create run scripts for Hive
     #
-def runCreateQuery(self):
-
-        create_database = 'CREATE DATABASE IF NOT EXISTS dev_bd_pilot'
-
-        create_metadata = "CREATE TABLE IF NOT EXISTS dev_bd_pilot.OPERATIONAL_METADATA(op_name STRING," \
-                          "job_type STRING,source_entity_name STRING, source_type STRING,source_system STRING," \
-                                    "source_path STRING, origin_system STRING, source_schema_name STRING, target_entity_name STRING," \
-                                    "target_type STRING, target_location STRING, target_path STRING, target_schema_name STRING," \
-                                    "target_system STRING) COMMENT 'Metadata Details' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n'" \
-                                "STORED AS TEXTFILE;"
+def create_hive_tables():
 
 
-        execute_query(create_database)
-        execute_query(create_database)
+        HIVE_SCRIPTS_DIRECTORY = "hive_scripts/"
+        hive_create_table_script = []
+
+        import os
+        list_of_files = os.listdir(HIVE_SCRIPTS_DIRECTORY)
+
+        for each_file in list_of_files:
+            with open(HIVE_SCRIPTS_DIRECTORY+each_file, 'r') as content_file:
+                content = content_file.read()
+                hive_create_table_script.append(content)
+
+
+        for each_script in hive_create_table_script:
+            complete_hive_query = "hive -e '%s'" % each_script
+            print complete_hive_query
+
+            import subprocess as sp
+            result = sp.Popen(complete_hive_query, shell=True, stdout=sp.PIPE, stderr=sp.PIPE).communicate()[0]
+
         return True
 
 
 def start_main(argv):
-    runCreateQuery()
+    create_hive_tables()

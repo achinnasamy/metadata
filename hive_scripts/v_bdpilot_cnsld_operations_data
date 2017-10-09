@@ -1,0 +1,22 @@
+# Operations_Metadata and Operations_Data
+CREATE TABLE IF NOT EXISTS dev_bd_pilot.v_bdpilot_cnsld_operations_data (
+    op_type STRING,
+    op_name STRING,
+    op_start_time_stamp STRING,
+    op_end_time_stamp STRING,
+    process_id STRING,
+    src_record_count STRING,
+    target_record_count STRING
+    src_type STRING,
+    src_path STRING,
+    src_schema_name STRING,
+    src_entity_name STRING,
+    target_type STRING,
+    target_schema_name STRING,
+    target_entity_name STRING
+)
+COMMENT 'Consolidated operations Metadata'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE;
