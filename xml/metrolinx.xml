@@ -5,7 +5,7 @@
     <comments>great_going_ingestion</comments>
     <hdfs_path>/User/bdpilot/metadata/xml</hdfs_path>
     <data>
-
+        <date_modified value="10-01-2017" />
         <metadata_type name="business">
             <entity name="dev_bd_pilot.presto_stop_id_ref" business_unit=""  entity_business_definition="testtable">
                 <field name="prestostopid" field_type="string"  field_business_definition="fbd1" />

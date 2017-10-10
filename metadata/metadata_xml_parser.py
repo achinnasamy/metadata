@@ -43,6 +43,7 @@ class MetadataXMLParser:
 
     def parseTechnicalXMLData(self):
 
+
         technical_metadata_list = []
 
         tree = ET.parse(TEMP_XML_FILE_LOCATION)
@@ -51,6 +52,7 @@ class MetadataXMLParser:
 
 
         for data in root.findall('data'):
+
             for mt in data.findall('metadata_type'):
 
                 # Parsing of Business metadata type
@@ -84,8 +86,14 @@ class MetadataXMLParser:
 
         root = tree.getroot()
 
+        _date_modified_ = 'NONE'
 
         for data in root.findall('data'):
+
+            for mt in data.findall('date_modified'):
+                _date_modified_ = mt.get('value')
+
+
             for mt in data.findall('metadata_type'):
 
                 # # Parsing of Technical metadata type
@@ -107,6 +115,7 @@ class MetadataXMLParser:
                         if (optype.get('name') == "integration"):
                                 metadatavalue = MetadataValue()
                                 metadatavalue.op_type = "integration"
+                                metadatavalue.date_modified = _date_modified_
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
                                 optype_map['integration'] = metadatavalue
@@ -114,6 +123,7 @@ class MetadataXMLParser:
                         if (optype.get('name') == "ingestion"):
                                 metadatavalue = MetadataValue()
                                 metadatavalue.op_type = "ingestion"
+                                metadatavalue.date_modified = _date_modified_
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
                                 optype_map['ingestion'] = metadatavalue
@@ -121,6 +131,7 @@ class MetadataXMLParser:
                         if (optype.get('name') == "curation"):
                                 metadatavalue = MetadataValue()
                                 metadatavalue.op_type = "curation"
+                                metadatavalue.date_modified = _date_modified_
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
                                 optype_map['curation'] = metadatavalue
@@ -128,6 +139,7 @@ class MetadataXMLParser:
                         if (optype.get('name') == "consumption"):
                                 metadatavalue = MetadataValue()
                                 metadatavalue.op_type = "consumption"
+                                metadatavalue.date_modified = _date_modified_
                                 for job in optype:
                                     self.populate_metadata_value(metadatavalue, job)
                                 optype_map['consumption'] = metadatavalue
@@ -152,7 +164,7 @@ class MetadataXMLParser:
         metadatavalue.target_entity_name = job.get("target_entity_name")
         metadatavalue.target_system = job.get("target_system")
         metadatavalue.target_path = job.get("target_path")
-        metadatavalue.date_modified = get_current_time()
+        #metadatavalue.date_modified = get_current_time()
         return
 
 
