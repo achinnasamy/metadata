@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS dev_bd_pilot.bdpilot_operational_metadata(
+    op_type STRING,
+    op_name STRING,
+    script_type STRING,
+    script_location STRING,
+    source_entity_name STRING,
+    source_type STRING,
+    source_system STRING,
+    source_path STRING,
+    source_schema_name STRING,
+    target_entity_name STRING,
+    target_type STRING,
+    target_path STRING,
+    target_schema_name STRING,
+    target_system STRING,
+    date_modified STRING
+)
+COMMENT 'Metadata Details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE;
