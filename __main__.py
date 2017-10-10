@@ -1,10 +1,8 @@
-from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager, business_metadata_reckoner, \
-    technical_metadata_reckoner, business_metadata_service_api_server
+from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager, business_metadata_reckoner, technical_metadata_reckoner, business_metadata_service_api_server
 
 import sys
 import sys,getopt
 
-#from metadata.metadata_enum import METROLINX_TABLES
 from metadata.metadata_enum import METROLINX_TABLES
 
 
