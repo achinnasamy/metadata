@@ -8,7 +8,7 @@ from metadata.metadata_enum import METROLINX_TABLES
 
 def help():
     help_statement = "The METADATA job has to be started using the following protocols: \n\n\n" \
-                     "  Metadata Ingestion           : python metadata-XXX.egg --job=M \n \n  Operational Data Ingestion   : python metadata-XXX.egg --job=O --status=0 --jobtype=ingestion --table=dev_bd_pilot.OPERATIONAL_DATA --csv=/user/hive/query_result.csv --oracle=OPERATIONAL_METADATA\n\n" \
+                     "  Metadata Ingestion           : python metadata-XXX.egg --job=O \n \n  Operational Data Ingestion   : python metadata-XXX.egg --job=D --status=0 --jobtype=ingestion --table=dev_bd_pilot.OPERATIONAL_DATA --csv=/user/hive/query_result.csv --oracle=OPERATIONAL_METADATA\n\n" \
                      " \n \n Creation of Business Metadata : python metadata-XXX.egg --job=B \n \n Creation of Technical Metadata : python metadata-XXX.egg --job=T \n\n" \
                      "  Creation of hive tables      : python metadata-XXX.egg --job=create-hive \n \n  Help                         : python metadata-XXX.egg --help \n\n " \
                      " Status : 0 - STARTED, 1 - RUNNING, 2 - SUCCESS \n Jobtype : ingestion, integration, consumption, curation"
@@ -56,9 +56,9 @@ if __name__ == "__main__":
             print help()
             sys.exit()
 
-    if job == 'M':
+    if job == 'O':
         metadata_reckoner.start_main(ingestion_param)
-    elif job == 'O':
+    elif job == 'D':
         operationaldata_reckoner.start_main(status, ingestion_param, fetch_table_name(table), fetch_table_name(oracle), csv)
     elif job == 'B':
         business_metadata_reckoner.start_main()
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     elif len(job.split(",")) > 1:
         job_array = job.split(",")
         for each_job in job_array:
-            if each_job == 'M':
+            if each_job == 'O':
                 metadata_reckoner.start_main(ingestion_param)
             elif each_job == 'B':
                 business_metadata_reckoner.start_main()
