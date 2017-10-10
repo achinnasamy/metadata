@@ -18,9 +18,15 @@ class MetadataXMLParser:
 
         root = tree.getroot()
 
+        _date_modified_ = 'NONE'
 
         for data in root.findall('data'):
+
+            for mt in data.findall('date_modified'):
+                _date_modified_ = mt.get('value')
+
             for mt in data.findall('metadata_type'):
+
 
                 # Parsing of Business metadata type
                 if (mt.get('name') == "business"):
@@ -34,7 +40,8 @@ class MetadataXMLParser:
                             metadatavalue.field_name = field.get('name')
                             metadatavalue.field_type = field.get('field_type')
                             metadatavalue.field_business_definition = field.get('field_business_definition')
-                            metadatavalue.date_modified = get_current_time()
+                            metadatavalue.date_modified = _date_modified_
+                            #get_current_time()
 
                             business_metadata_list.append(metadatavalue)
 
@@ -50,10 +57,16 @@ class MetadataXMLParser:
 
         root = tree.getroot()
 
+        _date_modified_ = 'NONE'
 
         for data in root.findall('data'):
 
+            for mt in data.findall('date_modified'):
+                _date_modified_ = mt.get('value')
+
             for mt in data.findall('metadata_type'):
+
+
 
                 # Parsing of Business metadata type
                 if (mt.get('name') == "technical"):
@@ -70,7 +83,8 @@ class MetadataXMLParser:
                             metadatavalue.field_comment = field.get('field_comment')
                             metadatavalue.field_precision = field.get('field_precision')
                             metadatavalue.field_format = field.get('field_format')
-                            metadatavalue.date_modified = get_current_time()
+                            metadatavalue.date_modified = _date_modified_
+                             #get_current_time()
 
                             technical_metadata_list.append(metadatavalue)
 
