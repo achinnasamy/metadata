@@ -1,0 +1,8 @@
+		<metadata_type name="business">
+            <entity name="dev_bd_pilot.presto_stop_id_ref" business_unit=""  entity_business_definition="testtable">
+                <field name="prestostopid" field_type="string"  field_business_definition="fbd1" />
+                <field name="longname"     field_type="string"  field_business_definition="fbd2" />
+                <field name="shortname"    field_type="string"  field_business_definition="fbd3" />
+                <field name="hustusstopid" field_type="string"  field_business_definition="" />
+            </entity>
+        </metadata_type>

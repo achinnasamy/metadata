@@ -99,7 +99,13 @@ class MetadataHiveIngestor:
 
         for each in optype_map:
 
-            if (isNotBlank(optype_map[each].op_type)) and (isNotBlank(optype_map[each].op_name)) and (isNotBlank(optype_map[each].script_location)):
+            if (isNotBlank(optype_map[each].op_type)) and (isNotBlank(optype_map[each].op_name)) and isNotBlank(optype_map[each].script_type) \
+                    and (isNotBlank(optype_map[each].script_location)) and (isNotBlank(optype_map[each].source_entity_name)) \
+                    and (isNotBlank(optype_map[each].target_entity_name)) and (isNotBlank(optype_map[each].target_type)) \
+                    and (isNotBlank(optype_map[each].target_path)) and (isNotBlank(optype_map[each].target_schema_name)) \
+                    and (isNotBlank(optype_map[each].target_system)) and (isNotBlank(optype_map[each].date_modified)) \
+                    and (isNotBlank(optype_map[each].source_type)) and (isNotBlank(optype_map[each].source_system)) \
+                    and (isNotBlank(optype_map[each].source_path)) and (isNotBlank(optype_map[each].source_schema_name)):
 
                 if each in ingestion_param:
                     print "\n\n Injesting " + each

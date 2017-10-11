@@ -15,6 +15,7 @@
 # def updateBusinessData():
 #
 #     todays_date = get_date()
+#
 #     LOCAL_XML_FILE_PATH = "/tmp/metadata-%s.xml" % (todays_date)
 #     HDFS_XML_PATH = "/user/devuser/"
 #
@@ -37,9 +38,9 @@
 #     write_file_to_hdfs(LOCAL_XML_FILE_PATH, HDFS_XML_PATH)
 #
 #
-    # Remove the local file after writing to the HDFS
-    # import os
-    # os.remove(LOCAL_XML_FILE_PATH)
+#     #Remove the local file after writing to the HDFS
+#     import os
+#     os.remove(LOCAL_XML_FILE_PATH)
 #
 #     business_metadata_reckoner.start_main()
 #

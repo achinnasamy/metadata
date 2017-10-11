@@ -1,4 +1,5 @@
-from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager, business_metadata_reckoner, technical_metadata_reckoner, business_metadata_service_api_server
+from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager, business_metadata_reckoner, \
+    technical_metadata_reckoner, business_metadata_service_api_server, business_metadata_service_standalone
 
 import sys
 import sys,getopt
@@ -81,6 +82,8 @@ if __name__ == "__main__":
         hive_manager.start_main(sys.argv[1:])
     elif job == 'business-service':
         business_metadata_service_api_server.start_main()
+    elif job == 'business-service-standalone':
+        business_metadata_service_standalone.start_main()
     else:
         print "\n\n Metadata Ingestion cannot start with options - " + job + "\n\n"
         print help()
