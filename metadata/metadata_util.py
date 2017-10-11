@@ -128,6 +128,8 @@ def get_current_linux_user_name():
     import getpass
     return getpass.getuser()
 
+def isNotBlank (myString):
+    return bool(myString and myString.strip())
 
 
 def get_current_process_id():

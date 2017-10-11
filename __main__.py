@@ -47,6 +47,7 @@ if __name__ == "__main__":
             csv = arg
         elif opt in ('-jt', '--jobtype'):
             ingestion_param =  arg.split(",")
+
         elif opt in ('-h', '--help'):
             print "\n\n\n HELP \n\n\n"
             print help()
@@ -57,6 +58,8 @@ if __name__ == "__main__":
             sys.exit()
 
     if job == 'O':
+        if (len(ingestion_param) == 0):
+            ingestion_param = ["ingestion", "integration", "consumption", "curation"]
         metadata_reckoner.start_main(ingestion_param)
     elif job == 'D':
         operationaldata_reckoner.start_main(status, ingestion_param, fetch_table_name(table), fetch_table_name(oracle), csv)

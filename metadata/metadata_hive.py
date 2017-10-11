@@ -2,7 +2,7 @@
 # from pyhive import hive
 # from TCLIService.ttypes import TOperationState
 
-from metadata.metadata_util import execute_query, execute_query_and_fetch_output
+from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank
 
 
 class MetadataHiveIngestor:
@@ -46,6 +46,7 @@ class MetadataHiveIngestor:
         print query
 
         return
+
 
     #
     #
@@ -98,29 +99,31 @@ class MetadataHiveIngestor:
 
         for each in optype_map:
 
-            if each in ingestion_param:
-                print "\n\n Injesting " + each
-                complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_operational_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
-                                                                                                    % (optype_map[each].op_type,
-                                                                                                       optype_map[each].op_name,
-                                                                                                       optype_map[each].script_type,
-                                                                                                       optype_map[each].script_location,
-                                                                                                       optype_map[each].source_entity_name,
-                                                                                                       optype_map[each].source_type,
-                                                                                                       optype_map[each].source_system,
-                                                                                                       optype_map[each].source_path,
-                                                                                                       optype_map[each].source_schema_name,
-                                                                                                       optype_map[each].target_entity_name,
-                                                                                                       optype_map[each].target_type,
-                                                                                                       optype_map[each].target_path,
-                                                                                                       optype_map[each].target_schema_name,
-                                                                                                       optype_map[each].target_system,
-                                                                                                       optype_map[each].date_modified)
+            if (isNotBlank(optype_map[each].op_type)) and (isNotBlank(optype_map[each].op_name)) and (isNotBlank(optype_map[each].script_location)):
+
+                if each in ingestion_param:
+                    print "\n\n Injesting " + each
+                    complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_operational_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" \
+                                                                                                        % (optype_map[each].op_type,
+                                                                                                           optype_map[each].op_name,
+                                                                                                           optype_map[each].script_type,
+                                                                                                           optype_map[each].script_location,
+                                                                                                           optype_map[each].source_entity_name,
+                                                                                                           optype_map[each].source_type,
+                                                                                                           optype_map[each].source_system,
+                                                                                                           optype_map[each].source_path,
+                                                                                                           optype_map[each].source_schema_name,
+                                                                                                           optype_map[each].target_entity_name,
+                                                                                                           optype_map[each].target_type,
+                                                                                                           optype_map[each].target_path,
+                                                                                                           optype_map[each].target_schema_name,
+                                                                                                           optype_map[each].target_system,
+                                                                                                           optype_map[each].date_modified)
 
 
-                print complete_query
+                    print complete_query
 
-                execute_query(complete_query)
+                    execute_query(complete_query)
 
         return
 
