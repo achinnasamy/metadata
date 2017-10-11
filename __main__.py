@@ -72,6 +72,8 @@ if __name__ == "__main__":
         job_array = job.split(",")
         for each_job in job_array:
             if each_job == 'O':
+                if (len(ingestion_param) == 0):
+                    ingestion_param = ["ingestion", "integration", "consumption", "curation"]
                 metadata_reckoner.start_main(ingestion_param)
             elif each_job == 'B':
                 business_metadata_reckoner.start_main()
