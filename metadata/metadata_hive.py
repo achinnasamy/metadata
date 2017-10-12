@@ -3,7 +3,7 @@
 # from TCLIService.ttypes import TOperationState
 
 from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank
-import spark.spark_hive_ingestor
+#import spark.spark_hive_ingestor
 
 
 class MetadataHiveIngestor:
