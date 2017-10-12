@@ -10,6 +10,7 @@ import os
 
 
 from metadata.oracle_data_manager import OracleDataManager
+from metadata_thread.metadata_thread_executor import MetadataThread
 
 TEMP_XML_FILE_LOCATION = "/home/devuser/metrolinx.xml"
 TEMP_CSV_FILE_LOCATION = "/home/devuser/"
@@ -122,9 +123,12 @@ def execute_query(query):
     #sp.Popen(query, shell=True, stdout=sp.PIPE)
         #sp.call(query, shell=True)
 
-    print "Running command ...."
-    import commands as co
-    co.getstatusoutput(query)
+    metadata_thread = MetadataThread(query)
+    metadata_thread.executeJobInThread
+
+    # print "Running command ...."
+    # import commands as co
+    # co.getstatusoutput(query)
 
     return
 

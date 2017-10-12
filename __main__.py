@@ -1,5 +1,4 @@
-from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager, business_metadata_reckoner, \
-    technical_metadata_reckoner, business_metadata_service_api_server, business_metadata_service_standalone
+from metadata import metadata_reckoner, operationaldata_reckoner, hive_manager, business_metadata_reckoner, technical_metadata_reckoner, business_metadata_service_api_server, business_metadata_service_standalone
 
 import sys
 import sys,getopt
