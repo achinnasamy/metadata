@@ -115,9 +115,10 @@ def execute_query_and_fetch_output(query):
     return result.split('\n', 1)[0]
 
 
-global_query = ''
+##############################################################################
+### Threads
+##############################################################################
 
-#
 def executeInThread(query):
     import commands as co
     co.getstatusoutput(query)
@@ -140,14 +141,16 @@ def execute_all_queries_aynchronously(all_queries):
             thread.start_new_thread(executeInThread,  (each, ) )
         except:
             print "Unable to start thread"
-
-
-
     return
 
-def execute_query(query):
+##############################################################################
+### Threads
+##############################################################################
 
-    global_query = query
+
+
+
+def execute_query(query):
 
     executeJobInThread(query)
     #sp.Popen(query, shell=True, stdout=sp.PIPE)
