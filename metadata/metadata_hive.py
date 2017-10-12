@@ -61,6 +61,7 @@ class MetadataHiveIngestor:
     def ingestTechnicalMetadata(self, technical_metadata_list):
 
         hive_query = ''
+        all_queries = []
 
         for each in technical_metadata_list:
 
@@ -75,8 +76,12 @@ class MetadataHiveIngestor:
                                                                                                                                                                         each.field_format,
                                                                                                                                                                         each.date_modified)
             complete_query = "hive -e '%s'" % (hive_query)
-            #print complete_query
+            print complete_query
+            all_queries.append(complete_query)
+
             #execute_query(complete_query)
+
+        execute_all_queries_aynchronously(all_queries)
 
         #spark_hive_ingestor.ingest_data(hive_query)
         #self.createTechnicalMetadataTable(technical_metadata_list)
@@ -105,6 +110,8 @@ class MetadataHiveIngestor:
         # cursor = hive.connect('localhost').cursor()
         # complete_query = "hive -e 'CREATE TABLE ARA(i STRING)'"
         # cursor.execute(complete_query, async=True)
+
+        all_queries = []
 
         for each in optype_map:
 
@@ -138,8 +145,10 @@ class MetadataHiveIngestor:
 
 
                     print complete_query
+                    all_queries.append(complete_query)
+                    #execute_query(complete_query)
 
-                    execute_query(complete_query)
+        execute_all_queries_aynchronously(all_queries)
 
         return
 
