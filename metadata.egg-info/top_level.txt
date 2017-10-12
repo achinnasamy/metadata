@@ -1,4 +1,2 @@
 __main__
 metadata
-metadata_thread
-spark

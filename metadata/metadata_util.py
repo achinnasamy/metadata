@@ -4,7 +4,6 @@ import os
 import subprocess as sp
 import time
 
-from metadata.metadata_thread_executor import MetadataThread
 from metadata.oracle_data_manager import OracleDataManager
 
 # import cx_Oracle
@@ -115,13 +114,34 @@ def execute_query_and_fetch_output(query):
     result = result.replace('\n\n', '')
     return result.split('\n', 1)[0]
 
+
+global_query = ''
+
+#
+def executeInThread():
+    import commands as co
+    co.getstatusoutput(global_query)
+    return
+
+
+
+
+def executeJobInThread():
+    import thread
+    thread.start_new_thread(executeInThread,  ("T"))
+    return 0
+
+
 def execute_query(query):
 
+    global_query = query
+
+    executeJobInThread
     #sp.Popen(query, shell=True, stdout=sp.PIPE)
     #sp.call(query, shell=True)
 
-    metadata_thread = MetadataThread(query)
-    metadata_thread.executeJobInThread
+    # metadata_thread = MetadataThread(query)
+    # metadata_thread.executeJobInThread
 
     # print "Running command ...."
     # import commands as co
