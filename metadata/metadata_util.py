@@ -126,7 +126,7 @@ def executeInThread(query):
 def executeJobInThread(query):
     try:
         import thread
-        thread.start_new_thread(executeInThread,  (query, 1, ) )
+        thread.start_new_thread(executeInThread,  (query, ) )
     except:
         print "Unable to start thread"
     return
