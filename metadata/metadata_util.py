@@ -1,13 +1,13 @@
 
-import time
 import datetime
-import subprocess as sp
 import os
-#import cx_Oracle
+import subprocess as sp
+import time
 
+from metadata.metadata_thread_executor import MetadataThread
 from metadata.oracle_data_manager import OracleDataManager
-from metadata_thread.metadata_thread_executor import MetadataThread
-import metadata_thread.metadata_thread_executor
+
+# import cx_Oracle
 
 TEMP_XML_FILE_LOCATION = "/home/devuser/metrolinx.xml"
 TEMP_CSV_FILE_LOCATION = "/home/devuser/"

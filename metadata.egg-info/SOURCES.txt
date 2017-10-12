@@ -8,6 +8,7 @@ metadata/__init__.py
 metadata/business_metadata_reckoner.py
 metadata/business_metadata_service.py
 metadata/business_metadata_service_api_server.py
+metadata/business_metadata_service_standalone.py
 metadata/hdfs_manager.py
 metadata/hive_manager.py
 metadata/metadata_enum.py
@@ -17,6 +18,7 @@ metadata/metadata_util.py
 metadata/metadata_validator.py
 metadata/metadata_xml_parser.py
 metadata/operationaldata_reckoner.py
+metadata/oracle_data_manager.py
 metadata/technical_metadata_reckoner.py
 metadata.egg-info/PKG-INFO
 metadata.egg-info/SOURCES.txt
@@ -24,3 +26,7 @@ metadata.egg-info/dependency_links.txt
 metadata.egg-info/entry_points.txt
 metadata.egg-info/requires.txt
 metadata.egg-info/top_level.txt
+metadata_thread/__init__.py
+metadata_thread/metadata_thread_executor.py
+spark/__init__.py
+spark/spark_hive_ingestor.py
