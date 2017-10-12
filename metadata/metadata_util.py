@@ -5,12 +5,9 @@ import subprocess as sp
 import os
 #import cx_Oracle
 
-
-
-
-
 from metadata.oracle_data_manager import OracleDataManager
-from metadata_thread.metadata_thread_executor import MetadataThread
+#from metadata_thread.metadata_thread_executor import MetadataThread
+import metadata_thread.metadata_thread_executor
 
 TEMP_XML_FILE_LOCATION = "/home/devuser/metrolinx.xml"
 TEMP_CSV_FILE_LOCATION = "/home/devuser/"
@@ -121,7 +118,7 @@ def execute_query_and_fetch_output(query):
 def execute_query(query):
 
     #sp.Popen(query, shell=True, stdout=sp.PIPE)
-        #sp.call(query, shell=True)
+    #sp.call(query, shell=True)
 
     metadata_thread = MetadataThread(query)
     metadata_thread.executeJobInThread

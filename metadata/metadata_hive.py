@@ -3,6 +3,7 @@
 # from TCLIService.ttypes import TOperationState
 
 from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank
+import spark.spark_hive_ingestor
 
 
 class MetadataHiveIngestor:
@@ -53,10 +54,12 @@ class MetadataHiveIngestor:
     #
     def ingestTechnicalMetadata(self, technical_metadata_list):
 
+        hive_query = ''
 
         for each in technical_metadata_list:
 
-            complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_technical_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" % (each.entity_name,
+
+            hive_query = "INSERT INTO TABLE dev_bd_pilot.bdpilot_technical_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")" % (each.entity_name,
                                                                                                                                                                         each.entity_comment,
                                                                                                                                                                         each.field_name,
                                                                                                                                                                         each.field_type,
@@ -65,12 +68,12 @@ class MetadataHiveIngestor:
                                                                                                                                                                         each.field_precision,
                                                                                                                                                                         each.field_format,
                                                                                                                                                                         each.date_modified)
+            complete_query = "hive -e '%s'" % (hive_query)
+            #print complete_query
+            #execute_query(complete_query)
 
-            print complete_query
-
-            execute_query(complete_query)
-
-        self.createTechnicalMetadataTable(technical_metadata_list)
+        #spark_hive_ingestor.ingest_data(hive_query)
+        #self.createTechnicalMetadataTable(technical_metadata_list)
         return
 
         #
