@@ -14,6 +14,7 @@ metadata/hive_manager.py
 metadata/metadata_enum.py
 metadata/metadata_hive.py
 metadata/metadata_reckoner.py
+metadata/metadata_thread_executor.py
 metadata/metadata_util.py
 metadata/metadata_validator.py
 metadata/metadata_xml_parser.py
@@ -26,7 +27,4 @@ metadata.egg-info/dependency_links.txt
 metadata.egg-info/entry_points.txt
 metadata.egg-info/requires.txt
 metadata.egg-info/top_level.txt
-metadata_thread/__init__.py
-metadata_thread/metadata_thread_executor.py
-spark/__init__.py
 spark/spark_hive_ingestor.py

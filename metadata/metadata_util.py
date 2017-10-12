@@ -131,6 +131,19 @@ def executeJobInThread(query):
         print "Unable to start thread"
     return
 
+def execute_all_queries_aynchronously(all_queries):
+
+    for each in all_queries:
+
+        try:
+            import thread
+            thread.start_new_thread(executeInThread,  (each, ) )
+        except:
+            print "Unable to start thread"
+
+
+
+    return
 
 def execute_query(query):
 

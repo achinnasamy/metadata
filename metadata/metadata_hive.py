@@ -2,7 +2,10 @@
 # from pyhive import hive
 # from TCLIService.ttypes import TOperationState
 
-from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank
+from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank, \
+    execute_all_queries_aynchronously
+
+
 #import spark.spark_hive_ingestor
 
 
@@ -13,6 +16,7 @@ class MetadataHiveIngestor:
     #
     def ingestBusinessMetadata(self, business_metadata_list):
 
+        all_queries = []
         for each in business_metadata_list:
 
             complete_query = "hive -e 'INSERT INTO TABLE dev_bd_pilot.bdpilot_business_metadata values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")'" % (each.business_unit,
@@ -24,9 +28,11 @@ class MetadataHiveIngestor:
                                                                                                                                                 each.date_modified)
 
             print complete_query
+            all_queries.append(complete_query)
+            #execute_query(complete_query)
 
-            execute_query(complete_query)
 
+        execute_all_queries_aynchronously(all_queries)
 
         #self.createBusinessMetadataTable(business_metadata_list)
         return
