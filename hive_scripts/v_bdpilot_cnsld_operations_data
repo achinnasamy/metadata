@@ -14,9 +14,4 @@ CREATE TABLE IF NOT EXISTS dev_bd_pilot.v_bdpilot_cnsld_operations_data (
     target_type STRING,
     target_schema_name STRING,
     target_entity_name STRING
-)
-COMMENT 'Consolidated operations Metadata'
-ROW FORMAT DELIMITED
-FIELDS TERMINATED BY '\t'
-LINES TERMINATED BY '\n'
-STORED AS TEXTFILE;
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY \"\\t\" LINES TERMINATED BY \"\\n\" STORED AS TEXTFILE;

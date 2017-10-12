@@ -14,9 +14,4 @@ CREATE TABLE IF NOT EXISTS dev_bd_pilot.bdpilot_operational_metadata(
     target_schema_name STRING,
     target_system STRING,
     date_modified STRING
-)
-COMMENT 'Metadata Details'
-ROW FORMAT DELIMITED
-FIELDS TERMINATED BY '\t'
-LINES TERMINATED BY '\n'
-STORED AS TEXTFILE;
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY \"\\t\" LINES TERMINATED BY \"\\n\" STORED AS TEXTFILE;
