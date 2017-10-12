@@ -23,8 +23,8 @@ class MetaDataReckoner:
     def fetchXMLFromHDFS(self):
 
         hdfs_manager = HDFSManager()
-        #hdfs_manager.fetch_the_recent_xml_file_from_hdfs()
-        return hdfs_manager.fetch_all_xml_files_from_hdfs("")
+        return True
+        #return hdfs_manager.fetch_the_recent_xml_file_from_hdfs()
 
 
 
@@ -32,7 +32,7 @@ def start_main(ingestion_param):
 
     # Retrieve the XML file from HDFS
     metadataReckoner = MetaDataReckoner()
-    #metadataReckoner.fetchXMLFromHDFS()
+    metadataReckoner.fetchXMLFromHDFS()
 
 
     hdfsManager = HDFSManager()

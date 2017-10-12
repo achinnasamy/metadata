@@ -42,9 +42,11 @@ def find_all_xml_files_in_hdfs(hdfs_dir_path):
     #all_xml_files = sp.Popen(["hdfs", "dfs", "-ls", "-C", "/*.xml"], stdout=sp.PIPE).communicate()[0]
     all_xml_files = sp.Popen(["hdfs", "dfs", "-ls", "/*.xml"], stdout=sp.PIPE).communicate()[0]
 
-    for each_file in all_xml_files.splitlines():
-        list_of_xml_files.append(each_file.replace("/",""))
+    each_column = all_xml_files.split()
 
+    for each in each_column:
+        if each.endswith("xml"):
+            list_of_xml_files.append(each)
     return list_of_xml_files
 
 
@@ -117,8 +119,13 @@ def execute_query_and_fetch_output(query):
 
 def execute_query(query):
 
-    sp.Popen(query, shell=True, stdout=sp.PIPE)
+    #sp.Popen(query, shell=True, stdout=sp.PIPE)
         #sp.call(query, shell=True)
+
+    print "Running command ...."
+    import commands as co
+    co.getstatusoutput(query)
+
     return
 
 #
