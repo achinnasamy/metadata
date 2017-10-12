@@ -118,25 +118,25 @@ def execute_query_and_fetch_output(query):
 global_query = ''
 
 #
-def executeInThread():
+def executeInThread(query):
     import commands as co
-    co.getstatusoutput(global_query)
+    co.getstatusoutput(query)
     return
 
-
-
-
-def executeJobInThread():
-    import thread
-    thread.start_new_thread(executeInThread,  ("T"))
-    return 0
+def executeJobInThread(query):
+    try:
+        import thread
+        thread.start_new_thread(executeInThread,  (query, 1, ) )
+    except:
+        print "Unable to start thread"
+    return
 
 
 def execute_query(query):
 
     global_query = query
 
-    executeJobInThread
+    executeJobInThread(query)
     #sp.Popen(query, shell=True, stdout=sp.PIPE)
     #sp.call(query, shell=True)
 
