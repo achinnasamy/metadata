@@ -6,7 +6,7 @@ import os
 #import cx_Oracle
 
 from metadata.oracle_data_manager import OracleDataManager
-#from metadata_thread.metadata_thread_executor import MetadataThread
+from metadata_thread.metadata_thread_executor import MetadataThread
 import metadata_thread.metadata_thread_executor
 
 TEMP_XML_FILE_LOCATION = "/home/devuser/metrolinx.xml"
