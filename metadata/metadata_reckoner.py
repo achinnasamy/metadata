@@ -60,7 +60,9 @@ def start_main(ingestion_param):
 
             # Should the validation return true, then ingest in Hive
             hiveIngestor = MetadataHiveIngestor()
-            hiveIngestor.ingestMetadata(optype_metadata_map, ingestion_param)
+            #hiveIngestor.ingestMetadata(optype_metadata_map, ingestion_param)
+
+            hiveIngestor.ingestOperationalMetadataToCSV(optype_metadata_map, ingestion_param)
 
             cleanup_service = MetadataCleanerService()
             cleanup_service.cleanFiles()

@@ -14,9 +14,11 @@ HDFS_XML_FILE_LOCATION = "/user/devuser/metrolinx1.xml"
 
 BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD = "/home/devuser/business_csv_hive_load.csv"
 TECHNICAL_CSV_FILE_LOCATION_FOR_HIVE_LOAD = "/home/devuser/technical_csv_hive_load.csv"
+OPERATIONAL_METADATA_CSV_FILE_LOCATION_FOR_HIVE_LOAD = "/home/devuser/operational_metadata_csv_hive_load.csv"
 
 BUSINESS_DATA_TABLE = "dev_bd_pilot.bdpilot_business_metadata"
 TECHNICAL_DATA_TABLE = "dev_bd_pilot.bdpilot_technical_metadata"
+OPERATIONAL_METADATA_DATA_TABLE = "dev_bd_pilot.bdpilot_operational_metadata"
 
 #
 #  Gets the process id of java

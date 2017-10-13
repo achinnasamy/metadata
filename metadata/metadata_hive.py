@@ -4,7 +4,8 @@
 from metadata.csv_writer import CSVWriter
 from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank, \
     execute_all_queries_aynchronously, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD, BUSINESS_DATA_TABLE, \
-    TECHNICAL_CSV_FILE_LOCATION_FOR_HIVE_LOAD, TECHNICAL_DATA_TABLE
+    TECHNICAL_CSV_FILE_LOCATION_FOR_HIVE_LOAD, TECHNICAL_DATA_TABLE, \
+    OPERATIONAL_METADATA_CSV_FILE_LOCATION_FOR_HIVE_LOAD, OPERATIONAL_METADATA_DATA_TABLE
 
 
 #import spark.spark_hive_ingestor
@@ -41,10 +42,46 @@ class MetadataHiveIngestor:
 
 
         csv_writer = CSVWriter()
-        csv_writer.writeToCSV(array_of_records, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD)
+        csv_writer.writeToCSV(array_of_records, TECHNICAL_CSV_FILE_LOCATION_FOR_HIVE_LOAD)
 
 
         self.loadCSVToHive(TECHNICAL_CSV_FILE_LOCATION_FOR_HIVE_LOAD, TECHNICAL_DATA_TABLE)
+        return
+
+    #
+    # Ingest Operational Metadata into CSV
+    #
+    def ingestOperationalMetadataToCSV(self, optype_map, ingestion_param):
+
+        #### Executing hive through pyhive ####
+        # cursor = hive.connect('localhost').cursor()
+        # complete_query = "hive -e 'CREATE TABLE ARA(i STRING)'"
+        # cursor.execute(complete_query, async=True)
+
+        all_records = []
+
+        for each in optype_map:
+
+            if each in ingestion_param:
+
+                    record =  optype_map[each].op_type + "," + optype_map[each].op_name + "," \
+                              + optype_map[each].script_type + "," + optype_map[each].script_location + "," \
+                              + optype_map[each].source_entity_name + "," + optype_map[each].source_type + "," \
+                              + optype_map[each].source_system + "," + optype_map[each].source_path + "," \
+                              + optype_map[each].source_schema_name + "," + optype_map[each].target_entity_name + "," \
+                              + optype_map[each].target_type + "," + optype_map[each].target_path + "," + optype_map[each].target_schema_name + "," \
+                              + optype_map[each].target_system + "," + optype_map[each].date_modified
+
+
+
+                    all_records.append(record)
+
+        csv_writer = CSVWriter()
+        csv_writer.writeToCSV(all_records, OPERATIONAL_METADATA_CSV_FILE_LOCATION_FOR_HIVE_LOAD)
+
+        self.loadCSVToHive(OPERATIONAL_METADATA_CSV_FILE_LOCATION_FOR_HIVE_LOAD, OPERATIONAL_METADATA_DATA_TABLE)
+
+
         return
 
 
