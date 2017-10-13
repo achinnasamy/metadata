@@ -12,6 +12,8 @@ TEMP_XML_FILE_LOCATION = "/home/devuser/metrolinx.xml"
 TEMP_CSV_FILE_LOCATION = "/home/devuser/"
 HDFS_XML_FILE_LOCATION = "/user/devuser/metrolinx1.xml"
 
+BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD = "/home/devuser/business_csv_hive_load.csv"
+
 #
 #  Gets the process id of java
 #

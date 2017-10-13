@@ -15,5 +15,6 @@ def start_main():
 
     hiveIngestor = MetadataHiveIngestor()
 
-    hiveIngestor.ingestBusinessMetadata(business_metadata_list)
+    #hiveIngestor.ingestBusinessMetadata(business_metadata_list)
+    hiveIngestor.ingestBusinessMetadataToCSV(business_metadata_list)
     return

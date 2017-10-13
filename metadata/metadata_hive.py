@@ -1,15 +1,30 @@
 
 # from pyhive import hive
 # from TCLIService.ttypes import TOperationState
-
+from metadata.csv_writer import CSVWriter
 from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank, \
-    execute_all_queries_aynchronously
+    execute_all_queries_aynchronously, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD
 
 
 #import spark.spark_hive_ingestor
 
 
 class MetadataHiveIngestor:
+
+
+    def ingestBusinessMetadataToCSV(self, business_metadata_list):
+
+        array_of_records = []
+
+        for each in business_metadata_list:
+            record_line = each.business_unit + "," + each.entity_name + "," + each.entity_business_definition + "," + each.field_name + "," + each.field_type + "," + each.field_business_definition + "," + each.date_modified
+            array_of_records.append(record_line)
+
+
+        csv_writer = CSVWriter()
+        csv_writer.writeToCSV(array_of_records, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD)
+        return
+
 
     #
     #
@@ -53,6 +68,10 @@ class MetadataHiveIngestor:
         print query
 
         return
+
+
+
+
 
 
     #
