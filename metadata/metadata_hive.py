@@ -3,7 +3,7 @@
 # from TCLIService.ttypes import TOperationState
 from metadata.csv_writer import CSVWriter
 from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank, \
-    execute_all_queries_aynchronously, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD
+    execute_all_queries_aynchronously, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD, BUSINESS_DATA_TABLE
 
 
 #import spark.spark_hive_ingestor
@@ -23,9 +23,28 @@ class MetadataHiveIngestor:
 
         csv_writer = CSVWriter()
         csv_writer.writeToCSV(array_of_records, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD)
+
+
+        self.loadCSVToHive(BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD, BUSINESS_DATA_TABLE)
         return
 
 
+
+    #
+    # Load the csv to the hive tables
+    # This is a generic function to be used.
+    #
+    def loadCSVToHive(self, csv_file_path, hive_table_name):
+
+        query = "LOAD DATA LOCAL INPATH '%s' OVERWRITE INTO TABLE %s" % (csv_file_path, hive_table_name)
+
+        complete_hive_query = "hive -e '%s'" % (query)
+
+
+        print complete_hive_query
+
+        execute_query(complete_hive_query)
+        return
     #
     #
     #
