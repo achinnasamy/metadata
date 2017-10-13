@@ -3,7 +3,8 @@
 # from TCLIService.ttypes import TOperationState
 from metadata.csv_writer import CSVWriter
 from metadata.metadata_util import execute_query, execute_query_and_fetch_output, isNotBlank, \
-    execute_all_queries_aynchronously, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD, BUSINESS_DATA_TABLE
+    execute_all_queries_aynchronously, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD, BUSINESS_DATA_TABLE, \
+    TECHNICAL_CSV_FILE_LOCATION_FOR_HIVE_LOAD, TECHNICAL_DATA_TABLE
 
 
 #import spark.spark_hive_ingestor
@@ -28,6 +29,23 @@ class MetadataHiveIngestor:
         self.loadCSVToHive(BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD, BUSINESS_DATA_TABLE)
         return
 
+
+    def ingestTechnicalMetadataToCSV(self, technical_metadata_list):
+
+        array_of_records = []
+
+
+        for each in technical_metadata_list:
+            record_line = each.entity_name + "," + each.entity_comment + "," + each.field_name + "," + each.field_type + "," + each.field_comment + "," + each.field_length + "," + each.field_precision+ "," +  each.field_format + "," + each.date_modified
+            array_of_records.append(record_line)
+
+
+        csv_writer = CSVWriter()
+        csv_writer.writeToCSV(array_of_records, BUSINESS_CSV_FILE_LOCATION_FOR_HIVE_LOAD)
+
+
+        self.loadCSVToHive(TECHNICAL_CSV_FILE_LOCATION_FOR_HIVE_LOAD, TECHNICAL_DATA_TABLE)
+        return
 
 
     #

@@ -15,6 +15,8 @@ def start_main():
 
     hiveIngestor = MetadataHiveIngestor()
 
-    hiveIngestor.ingestTechnicalMetadata(technical_metadata_list)
+    #hiveIngestor.ingestTechnicalMetadata(technical_metadata_list)
+
+    hiveIngestor.ingestTechnicalMetadataToCSV(technical_metadata_list)
 
     return
