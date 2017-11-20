@@ -7,19 +7,19 @@ here = path.abspath(path.dirname(__file__))
 
 
 setup(
-    name='metadata',
+    name='mData',
 
     version='3.0',
 
-    description='Metrolinux Metadata',
-    long_description="Metrolinx Project",
+    description='mData',
+    long_description="MData",
 
 
-    url='http://metrolinx.com',
+    url='http://m.com',
 
 
-    author='Sri',
-    author_email='sri@metrolinx.com',
+    author='author',
+    author_email='s@m.com',
 
 
     license='Copyright',

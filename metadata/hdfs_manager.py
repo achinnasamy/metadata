@@ -1,4 +1,4 @@
-import subprocess
+
 
 from metadata.metadata_util import find_all_xml_files_in_hdfs, execute_hdfs, TEMP_XML_FILE_LOCATION
 
